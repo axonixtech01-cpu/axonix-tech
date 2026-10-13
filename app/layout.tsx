@@ -4,6 +4,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { InstagramFloatingCTA } from '@/components/InstagramFloatingCTA';
 import { MotionEffects } from '@/components/MotionEffects';
+import { Analytics } from '@/components/Analytics';
 import { OG_IMAGE, SITE_URL } from '@/lib/site';
 
 // Runs before first paint: enables scroll-reveal styles only when JS is available.
@@ -83,6 +84,8 @@ export default function RootLayout({
         </div>
         {/* Global scroll-reveal, spotlight and ripple effects */}
         <MotionEffects />
+        {/* Cookieless analytics — loads only when configured via environment variables */}
+        <Analytics />
       </body>
     </html>
   );
