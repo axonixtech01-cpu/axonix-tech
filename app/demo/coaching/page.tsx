@@ -68,7 +68,7 @@ const COURSES = [
       'Olympiad, NTSE, and school exam syllabus covered',
       'Mental ability and logical reasoning training',
       'Regular parent-teacher progress evaluations',
-      'School board exam 95%+ guarantee framework',
+      'Board-exam prep framework with regular mock tests',
     ],
   },
 ];
@@ -186,7 +186,7 @@ export default function CoachingDemoPage() {
           <div className="mx-auto max-w-7xl flex items-start gap-2">
             <Info className="h-4 w-4 shrink-0 mt-0.5 text-amber-400" />
             <p>
-              <strong>Owner Inspection Active:</strong> Yellow badges throughout this page explain the psychology behind each section and why this Next.js architecture converts parents into admissions 3x better than generic WordPress sites.
+              <strong>Owner Inspection Active:</strong> Yellow badges throughout this page explain the reasoning behind each section and how this layout is designed to turn parent visits into admission enquiries.
             </p>
           </div>
         </div>
@@ -279,7 +279,7 @@ export default function CoachingDemoPage() {
                 
                 {ownerMode && (
                   <div className="absolute -top-3 right-4 rounded bg-amber-400 px-2 py-0.5 text-[10px] font-bold text-black font-mono">
-                    2-FIELD MICRO FORM (350% HIGHER COMPLETION)
+                    2-FIELD MICRO FORM (FEWER FIELDS, LESS FRICTION)
                   </div>
                 )}
 
@@ -363,6 +363,9 @@ export default function CoachingDemoPage() {
                     <p className="text-xs text-zinc-400">
                       Our academic counselor will contact <span className="text-blue-400 font-mono">{formData.parentPhone}</span> with batch details.
                     </p>
+                    <p className="mt-2 rounded-md border border-amber-400/30 bg-amber-400/10 px-2.5 py-1.5 text-[11px] font-mono text-amber-300">
+                      Demo only — no details were sent or stored. On a real client site, this goes straight to the business&apos;s WhatsApp or email.
+                    </p>
                   </div>
                 )}
               </div>
@@ -413,7 +416,7 @@ export default function CoachingDemoPage() {
             
             {ownerMode && (
               <div className="mb-4 rounded bg-amber-400/10 border border-amber-400/30 p-2 text-[10px] text-amber-300 font-mono">
-                <strong>WHY THIS CONVERTS:</strong> 85% of parents bounce when fees say &quot;Call for details&quot;. Displaying transparent fees builds trust immediately and filters out unqualified inquiries before staff waste time on phone calls.
+                <strong>WHY THIS CONVERTS:</strong> Many parents leave when fees just say &quot;Call for details&quot;. Displaying transparent fees builds trust immediately and filters out unqualified inquiries before staff waste time on phone calls.
               </div>
             )}
 
