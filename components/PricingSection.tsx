@@ -53,7 +53,7 @@ const TIERS = [
       'Complex UI/UX journey prototyping in Figma',
       'Interactive widgets, code snippet viewers, custom filters',
       'API integration & dynamic data architecture',
-      'Lighthouse 95+ performance optimization',
+      'Performance optimization (Lighthouse 95+ as a target)',
       'Comprehensive codebase documentation & repo transfer',
     ],
     ctaText: 'Discuss Custom Scope',
@@ -158,6 +158,15 @@ export const PricingSection: React.FC = () => {
             100% Transparency: Advance payment of 40% to initiate wireframing, balance upon deployment and satisfaction.
           </span>
         </div>
+
+        {/* Separate-quote note for non-website services */}
+        <p className="mt-4 text-center text-[11px] sm:text-xs text-axon-dim max-w-2xl mx-auto leading-relaxed">
+          Website packages cover website work only. PPT &amp; presentation design and chatbot development are quoted separately based on slide count, functionality, API requirements, and delivery scope.{' '}
+          <Link href="/contact" className="text-axon-blue hover:text-axon-accent underline underline-offset-2">
+            Request a quote
+          </Link>
+          .
+        </p>
 
       </div>
     </section>
