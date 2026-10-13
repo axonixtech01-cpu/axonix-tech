@@ -35,9 +35,13 @@ export interface ServiceItem {
 interface ServiceCardProps {
   service: ServiceItem;
   detailed?: boolean;
+  /** Animate the card in on scroll; the number staggers cards in a row (0–6). */
+  revealDelay?: number;
+  /** Extra classes for the card root (e.g. carousel sizing). */
+  className?: string;
 }
 
-export const ServiceCard: React.FC<ServiceCardProps> = ({ service, detailed = false }) => {
+export const ServiceCard: React.FC<ServiceCardProps> = ({ service, detailed = false, revealDelay, className = '' }) => {
   const getIcon = (type: string) => {
     const props = { className: "h-6 w-6 text-axon-blue" };
     switch (type) {
@@ -56,7 +60,11 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, detailed = fa
   return (
     <div 
       id={service.id}
-      className="group relative flex flex-col justify-between rounded-2xl border border-axon-border bg-axon-surface/70 p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-axon-blue/40 hover:bg-axon-surface hover:shadow-glow-sm"
+      data-spotlight
+      data-tilt
+      data-reveal={revealDelay !== undefined ? '' : undefined}
+      data-reveal-delay={revealDelay}
+      className={`group relative flex scroll-mt-24 flex-col justify-between rounded-2xl border border-axon-border bg-axon-surface/70 p-6 sm:p-7 shadow-sm transition-all duration-300 hover:border-axon-blue/40 hover:bg-axon-surface hover:shadow-glow-sm ${className}`}
     >
       <div>
         {/* Top Header */}
@@ -110,7 +118,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, detailed = fa
         <Link
           href={`/contact?service=${encodeURIComponent(service.title)}`}
           className="inline-flex shrink-0 items-center gap-1 text-xs font-mono font-medium text-axon-blue hover:text-axon-accent transition-colors group-hover:translate-x-0.5"
-          aria-label={`Inquire about ${service.title}`}
+          aria-label={`Enquire about ${service.title}`}
         >
           <span>Enquire</span>
           <ArrowRight className="h-3.5 w-3.5" />
