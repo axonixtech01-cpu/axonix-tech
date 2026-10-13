@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Mail, Copy, Check, Send, AlertCircle, Info, Instagram, ArrowUpRight } from 'lucide-react';
 
 interface FormData {
@@ -11,6 +11,54 @@ interface FormData {
   timeline: string;
   details: string;
 }
+
+interface ServiceOption {
+  value: string;
+  label: string;
+  /** Alternate names / IDs accepted from the ?service= query parameter */
+  aliases: string[];
+  /** Optional guidance shown under the dropdown when this service is selected */
+  hint?: string;
+}
+
+const SERVICE_OPTIONS: ServiceOption[] = [
+  { value: 'Starter Launch (₹4,999)', label: 'Starter Launch Plan (₹4,999)', aliases: ['Starter Launch Website', 'Starter Launch'] },
+  { value: 'Growth Business (₹9,999)', label: 'Growth Business Plan (₹9,999)', aliases: ['Growth Business Website', 'Growth Business'] },
+  { value: 'Custom Architecture', label: 'Custom Scope / Startup Portal', aliases: ['Custom Architecture Scope'] },
+  { value: 'Website Design', label: 'Website Design & Wireframing', aliases: ['web-design'] },
+  { value: 'Responsive Web Development', label: 'Responsive Web Development', aliases: ['Responsive Website Development', 'responsive-dev'] },
+  { value: 'Landing Page', label: 'High-Impact Landing Page', aliases: ['Landing Pages', 'landing-pages'] },
+  { value: 'Website Redesign', label: 'Complete Website Redesign', aliases: ['redesign'] },
+  { value: 'UI/UX Design', label: 'UI/UX Design & Prototyping', aliases: ['uiux'] },
+  { value: 'Portfolio & Business Website', label: 'Portfolio & Business Website', aliases: ['Portfolio & Business Websites', 'business-sites'] },
+  {
+    value: 'PPT & Presentation Design',
+    label: 'PPT & Presentation Design',
+    aliases: ['ppt-design', 'Presentation Design'],
+    hint: 'Helpful details: approximate slide count, purpose (academic, business, pitch deck), whether you will supply the content, and if you need an editable .pptx file. Content writing is quoted separately from slide design.',
+  },
+  {
+    value: 'Chatbot Development & AI Integration',
+    label: 'Chatbot Development & AI Integration',
+    aliases: ['chatbot-development', 'Chatbot Development'],
+    hint: 'Helpful details: where the chatbot will live, the questions it should answer, whether you need lead capture, and if you want a rule-based bot or an AI-powered one (AI APIs have separate usage costs).',
+  },
+];
+
+const normalize = (value: string): string => value.trim().toLowerCase().replace(/\s+/g, ' ');
+
+/** Resolves a (decoded) ?service= value to a supported dropdown value, or null. */
+const findServiceOption = (requested: string): string | null => {
+  const target = normalize(requested);
+  if (!target) return null;
+  const match = SERVICE_OPTIONS.find(
+    (option) =>
+      normalize(option.value) === target ||
+      normalize(option.label) === target ||
+      option.aliases.some((alias) => normalize(alias) === target)
+  );
+  return match ? match.value : null;
+};
 
 export const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -26,6 +74,20 @@ export const ContactForm: React.FC = () => {
   const [copied, setCopied] = useState(false);
   const [dmTriggered, setDmTriggered] = useState(false);
   const [submittedDraft, setSubmittedDraft] = useState(false);
+
+  // Preselect the service from links such as /contact?service=PPT%20%26%20Presentation%20Design.
+  // URLSearchParams decodes percent-encoding and "+" automatically. Reading window.location
+  // inside useEffect keeps the contact page statically rendered (no Suspense boundary needed).
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get('service');
+    if (!requested) return;
+    const matched = findServiceOption(requested);
+    if (matched) {
+      setFormData((prev) => ({ ...prev, projectType: matched }));
+    }
+  }, []);
+
+  const selectedServiceHint = SERVICE_OPTIONS.find((option) => option.value === formData.projectType)?.hint;
 
   const validate = (): boolean => {
     const newErrors: Partial<Record<keyof FormData, string>> = {};
@@ -204,18 +266,28 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
               id="projectType"
               value={formData.projectType}
               onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
+              aria-describedby={selectedServiceHint ? 'projectType-hint' : undefined}
               className="w-full rounded-lg border border-axon-border bg-axon-bg px-3.5 py-2.5 text-sm text-axon-text transition-colors focus:border-axon-blue focus:outline-none focus:ring-1 focus:ring-axon-blue"
             >
-              <option value="Starter Launch (₹4,999)">Starter Launch Plan (₹4,999)</option>
-              <option value="Growth Business (₹9,999)">Growth Business Plan (₹9,999)</option>
-              <option value="Custom Architecture">Custom Scope / Startup Portal</option>
-              <option value="Website Design">Website Design &amp; Wireframing</option>
-              <option value="Responsive Web Development">Responsive Web Development</option>
-              <option value="Landing Page">High-Impact Landing Page</option>
-              <option value="Website Redesign">Complete Website Redesign</option>
+              {SERVICE_OPTIONS.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </div>
         </div>
+
+        {/* Service-specific guidance (PPT / Chatbot) */}
+        {selectedServiceHint && (
+          <p
+            id="projectType-hint"
+            className="flex items-start gap-2 rounded-lg border border-axon-blue/20 bg-axon-blue/5 p-3 text-[11px] sm:text-xs leading-relaxed text-axon-muted"
+          >
+            <Info className="h-3.5 w-3.5 shrink-0 mt-0.5 text-axon-blue" />
+            <span>{selectedServiceHint}</span>
+          </p>
+        )}
 
         {/* Row 3: Timeline */}
         <div>
@@ -251,7 +323,7 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
             rows={4}
             value={formData.details}
             onChange={(e) => setFormData({ ...formData, details: e.target.value })}
-            placeholder="Tell us about your business, the pages you need (Home, About, Menu/Courses, Contact), any reference websites you like, and your primary goal..."
+            placeholder="Tell us about your business or project, what you need (pages, slides, or chatbot features), any references you like, and your primary goal..."
             className={`w-full rounded-lg border bg-axon-bg p-3.5 text-sm text-axon-text placeholder-axon-dim/50 transition-colors focus:outline-none focus:ring-1 ${
               errors.details
                 ? 'border-rose-500/80 focus:ring-rose-500'
@@ -324,7 +396,7 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
           <div className="mt-2 rounded-lg bg-axon-blue/10 border border-axon-blue/30 p-3 text-xs text-axon-accent flex items-start gap-2">
             <Check className="h-4 w-4 shrink-0 mt-0.5" />
             <span>
-              Your email client should open shortly with the pre-filled message addressed to <strong>Axonix.tech01@gmail.com</strong>.
+              Your email app should open shortly with a pre-filled draft addressed to <strong>Axonix.tech01@gmail.com</strong>. Nothing is sent until you press send in your email app.
             </span>
           </div>
         )}
@@ -333,8 +405,8 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
         <div className="mt-4 flex items-start gap-2 rounded-lg bg-axon-bg p-3 border border-axon-border/60 text-xs text-axon-muted">
           <Info className="h-4 w-4 text-axon-blue shrink-0 mt-0.5" />
           <p className="leading-relaxed">
-            <strong className="text-axon-text">Complete Privacy Guarantee:</strong>{' '}
-            Your project brief is delivered directly to our official agency Instagram (<a href="https://www.instagram.com/axo_nixtech/" target="_blank" rel="noopener noreferrer" className="text-axon-blue underline">@axo_nixtech</a>) or email. We never publish or sell client contact details.
+            <strong className="text-axon-text">Privacy Note:</strong>{' '}
+            This form does not submit or store your details on any server. Your brief is only shared when you choose to send it yourself via Instagram DM (<a href="https://www.instagram.com/axo_nixtech/" target="_blank" rel="noopener noreferrer" className="text-axon-blue underline">@axo_nixtech</a>) or your own email app. We never publish or sell client contact details.
           </p>
         </div>
       </form>
