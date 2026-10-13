@@ -1,13 +1,45 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Instagram, Send, X, MessageSquare } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { Instagram, Send, X } from 'lucide-react';
 
 export const InstagramFloatingCTA: React.FC = () => {
   const [minimized, setMinimized] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const pathname = usePathname();
+
+  // Slide out of the way while scrolling down (so it never covers content); return on scroll up.
+  useEffect(() => {
+    let lastY = window.scrollY;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const nearBottom = window.innerHeight + y >= document.documentElement.scrollHeight - 80;
+        if (y < 120 || nearBottom) setHidden(false);
+        else if (y > lastY + 8) setHidden(true);
+        else if (y < lastY - 8) setHidden(false);
+        lastY = y;
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // The /links page (Instagram bio) already shows DM buttons.
+  if (pathname === '/links') return null;
 
   return (
-    <aside aria-label="Direct Instagram inquiry" className="fixed bottom-5 right-5 z-40 flex items-center">
+    <aside
+      aria-label="Direct Instagram inquiry"
+      className={`fixed bottom-5 right-5 z-40 flex items-center transition-all duration-300 ${
+        hidden ? 'pointer-events-none translate-y-24 opacity-0' : 'translate-y-0 opacity-100'
+      }`}
+    >
       {!minimized ? (
         <div className="relative group flex items-center gap-2 rounded-full border border-axon-blue/40 bg-axon-surface/95 p-1.5 pr-4 shadow-[0_8px_30px_rgba(0,180,255,0.3)] backdrop-blur-xl transition-all duration-300 hover:border-axon-blue hover:shadow-glow-md">
           
