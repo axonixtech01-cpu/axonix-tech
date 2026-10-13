@@ -53,6 +53,26 @@ export const Footer: React.FC = () => {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link href="/work/presentations" className="transition-colors hover:text-axon-blue">
+                  PPT Samples
+                </Link>
+              </li>
+              <li>
+                <Link href="/demo/chatbot" className="transition-colors hover:text-axon-blue">
+                  Chatbot Demo
+                </Link>
+              </li>
+              <li>
+                <Link href="/services#faq" className="transition-colors hover:text-axon-blue">
+                  FAQ
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="transition-colors hover:text-axon-blue">
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -110,7 +130,6 @@ export const Footer: React.FC = () => {
                 <a
                   href="mailto:Axonix.tech01@gmail.com"
                   className="group flex items-center gap-2 text-axon-text transition-colors hover:text-axon-blue"
-                  aria-label="Send email to Axonix Tech"
                 >
                   <Mail className="h-4 w-4 text-axon-blue" />
                   <span className="truncate">Axonix.tech01@gmail.com</span>
@@ -122,7 +141,6 @@ export const Footer: React.FC = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-2 text-axon-text transition-colors hover:text-axon-blue"
-                  aria-label="Visit Axonix Tech on Instagram"
                 >
                   <Instagram className="h-4 w-4 text-axon-accent" />
                   <span>@axo_nixtech</span>
