@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { ContactForm } from '@/components/ContactForm';
 import { 
   Mail, 
@@ -12,15 +13,15 @@ import {
   PhoneCall
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/contact',
   title: 'Contact — Initiate Your Project Inquiry',
   description:
     'Get in touch with Axonix Tech to discuss a new website, redesign, landing page, presentation design, or website chatbot. Email: Axonix.tech01@gmail.com | Instagram: @axo_nixtech',
-  openGraph: {
-    title: 'Contact Axonix Tech | Project Inquiries',
-    description: 'Start your website, presentation, or chatbot project with Axonix Tech. Direct communication, transparent pricing.',
-  },
-};
+  ogTitle: 'Contact Axonix Tech | Project Inquiries',
+  ogDescription:
+    'Start your website, presentation, or chatbot project with Axonix Tech. Direct communication, transparent pricing.',
+});
 
 export default function ContactPage() {
   return (
