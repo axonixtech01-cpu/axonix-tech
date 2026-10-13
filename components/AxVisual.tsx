@@ -64,7 +64,7 @@ export const AxVisual: React.FC = () => {
           </div>
 
           {/* Surrounding High-Tech Telemetry Badges */}
-          <div className="w-full mt-6 grid grid-cols-2 gap-2 text-[10px] font-mono">
+          <div className="w-full mt-6 hidden sm:grid grid-cols-2 gap-2 text-[10px] font-mono">
             <div className="flex items-center justify-between rounded bg-axon-bg/80 px-2.5 py-1.5 border border-axon-border/70">
               <span className="text-axon-dim">INTERFACE:</span>
               <span className="text-axon-text font-bold">CYBER_CHISEL</span>
@@ -85,7 +85,7 @@ export const AxVisual: React.FC = () => {
         </div>
 
         {/* Bottom Metrics Bar */}
-        <div className="grid grid-cols-3 gap-2 border-t border-axon-border/80 pt-4 text-center">
+        <div className="hidden sm:grid grid-cols-3 gap-2 border-t border-axon-border/80 pt-4 text-center">
           <div className="rounded-lg bg-axon-bg/70 p-2.5 border border-axon-border/70">
             <span className="block font-mono text-[9px] text-axon-dim uppercase">Design Language</span>
             <span className="font-mono text-xs font-semibold text-axon-text sm:text-sm">Cyber-Metallic</span>
