@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { Mail, Copy, Check, Send, AlertCircle, Info, Instagram, ArrowUpRight, BadgePercent } from 'lucide-react';
-import { DISCOUNT_CODE } from '@/lib/site';
+import { DISCOUNT_CODE, trackEvent } from '@/lib/site';
 
 interface FormData {
   fullName: string;
@@ -139,6 +140,7 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
   const handleInstagramDM = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
+      trackEvent(formData.wantsDiscount ? 'contact-brief-instagram-discount' : 'contact-brief-instagram');
       const brief = getBriefText();
       navigator.clipboard.writeText(brief).then(() => {
         setDmTriggered(true);
@@ -152,6 +154,7 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
   const handleLaunchEmail = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
+      trackEvent(formData.wantsDiscount ? 'contact-brief-email-discount' : 'contact-brief-email');
       const subject = encodeURIComponent(
         `[Project Inquiry]${formData.wantsDiscount ? ` [${DISCOUNT_CODE}]` : ''} ${formData.projectType} — ${formData.fullName} ${
           formData.businessName ? `(${formData.businessName})` : ''
@@ -165,6 +168,7 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
 
   const handleCopyBrief = () => {
     if (validate()) {
+      trackEvent('contact-brief-copy');
       navigator.clipboard.writeText(getBriefText()).then(() => {
         setCopied(true);
         setTimeout(() => setCopied(false), 3000);
@@ -418,6 +422,14 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
           </button>
         </div>
 
+        <p className="text-[11px] leading-relaxed text-axon-dim">
+          Your brief stays in your browser until you send it yourself via Instagram or email. See our{' '}
+          <Link href="/privacy" className="text-axon-blue underline underline-offset-2 hover:text-axon-accent">
+            Privacy Policy
+          </Link>
+          .
+        </p>
+
         {/* Feedback for Instagram DM click */}
         {dmTriggered && (
           <div className="mt-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 text-xs text-emerald-300 flex items-start gap-2">
@@ -438,6 +450,7 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
           </div>
         )}
 
+        
         {/* Privacy Callout */}
         <div className="mt-4 flex items-start gap-2 rounded-lg bg-axon-bg p-3 border border-axon-border/60 text-xs text-axon-muted">
           <Info className="h-4 w-4 text-axon-blue shrink-0 mt-0.5" />
