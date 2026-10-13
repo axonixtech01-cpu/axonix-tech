@@ -91,7 +91,7 @@ export default function OpenGraphImage() {
         >
           <span>Instagram: @axo_nixtech</span>
           <span>•</span>
-          <span>Sub-1.5s Speed</span>
+          <span>Performance-Focused</span>
           <span>•</span>
           <span>360px Fluid Mobile</span>
         </div>
