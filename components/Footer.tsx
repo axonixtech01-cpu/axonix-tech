@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
           <div className="md:col-span-2 lg:col-span-2 space-y-4">
             <BrandLogo size="lg" showTagline />
             <p className="max-w-md text-sm leading-relaxed text-axon-muted pt-2">
-              Modern websites. Meaningful digital experiences. We design and engineer high-performance web platforms for growing businesses, startups, and institutions.
+              Modern websites. Meaningful digital experiences. We design and build performance-focused websites, professional presentations, and website chatbots for growing businesses, startups, students, and institutions.
             </p>
             <div className="pt-2 text-xs font-mono text-axon-blue flex items-center gap-2">
               <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
@@ -85,6 +85,16 @@ export const Footer: React.FC = () => {
               <li>
                 <Link href="/services#business-sites" className="transition-colors hover:text-axon-blue">
                   Business Portals
+                </Link>
+              </li>
+              <li>
+                <Link href="/services#ppt-design" className="transition-colors hover:text-axon-blue">
+                  PPT &amp; Presentation Design
+                </Link>
+              </li>
+              <li>
+                <Link href="/services#chatbot-development" className="transition-colors hover:text-axon-blue">
+                  Chatbot Development
                 </Link>
               </li>
             </ul>
