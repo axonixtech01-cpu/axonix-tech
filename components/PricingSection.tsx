@@ -128,6 +128,7 @@ export const PricingSection: React.FC = () => {
                   href={INSTAGRAM_DM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-umami-event={`pricing-dm-${tier.serviceParam.split(' ')[0].toLowerCase()}`}
                   data-ripple
                   className={`w-full inline-flex items-center justify-center gap-2 rounded-lg py-3 text-xs sm:text-sm font-semibold transition-colors duration-200 ${
                     tier.popular
