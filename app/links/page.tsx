@@ -13,6 +13,8 @@ import {
   ArrowUpRight,
   ChevronRight,
   Gift,
+  Presentation,
+  Bot,
 } from 'lucide-react';
 import { BrandLogo } from '@/components/BrandLogo';
 import { NeuralBackground } from '@/components/NeuralBackground';
@@ -44,6 +46,8 @@ const LINKS: LinkItem[] = [
   { href: '/demo/restaurant', label: 'Live Demo: Restaurant Website', sub: 'Digital menu, table booking', Icon: UtensilsCrossed },
   { href: '/demo/coaching', label: 'Live Demo: Coaching Institute', sub: 'Courses, fees, admission enquiries', Icon: GraduationCap },
   { href: '/demo/business', label: 'Live Demo: Clinic / Local Business', sub: 'Services, appointment booking', Icon: Stethoscope },
+  { href: '/work/presentations', label: 'PPT Design Samples', sub: 'Pitch deck, college project & business slides', Icon: Presentation },
+  { href: '/demo/chatbot', label: 'Try the Chatbot Demo', sub: 'A live rule-based website chatbot', Icon: Bot },
   { href: '/contact', label: 'Get a Free Quote', sub: 'Send your project brief in 2 minutes', Icon: FileText },
   { href: INSTAGRAM_DM_URL, label: 'DM on Instagram', sub: '@axo_nixtech', Icon: Instagram, external: true, highlight: 'insta' },
   { href: `mailto:${CONTACT_EMAIL}`, label: 'Email Us', sub: CONTACT_EMAIL, Icon: Mail, external: true },
@@ -62,6 +66,12 @@ const iconClasses: Record<NonNullable<LinkItem['highlight']> | 'none', string> =
   insta: 'bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white',
   none: 'bg-axon-bg text-axon-blue border border-axon-border',
 };
+
+const slug = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 
 export default function LinksPage() {
   return (
@@ -122,16 +132,17 @@ export default function LinksPage() {
                     rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     data-ripple
                     data-spotlight
+                    data-umami-event={`links-${slug(item.label)}`}
                     className={className}
                   >
                     {content}
                   </a>
                 ) : item.href.startsWith('#') ? (
-                  <a href={item.href} data-ripple data-spotlight className={className}>
+                  <a href={item.href} data-ripple data-spotlight data-umami-event={`links-${slug(item.label)}`} className={className}>
                     {content}
                   </a>
                 ) : (
-                  <Link href={item.href} data-ripple data-spotlight className={className}>
+                  <Link href={item.href} data-ripple data-spotlight data-umami-event={`links-${slug(item.label)}`} className={className}>
                     {content}
                   </Link>
                 )}
@@ -142,7 +153,7 @@ export default function LinksPage() {
 
         {/* Discount call-to-action */}
         <section id="discount" aria-label="Discount" className="mt-10 scroll-mt-20">
-          <DiscountCallout compact />
+          <DiscountCallout compact headingLevel="h2" />
         </section>
 
         <p className="mt-8 text-center text-[11px] font-mono text-axon-dim">
