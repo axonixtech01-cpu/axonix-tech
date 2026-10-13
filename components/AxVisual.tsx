@@ -75,7 +75,7 @@ export const AxVisual: React.FC = () => {
             </div>
             <div className="flex items-center justify-between rounded bg-axon-bg/80 px-2.5 py-1.5 border border-axon-border/70">
               <span className="text-axon-dim">RENDER SPEED:</span>
-              <span className="text-emerald-400 font-bold">&lt; 0.8s FCP</span>
+              <span className="text-emerald-400 font-bold">OPTIMIZED</span>
             </div>
             <div className="flex items-center justify-between rounded bg-axon-bg/80 px-2.5 py-1.5 border border-axon-border/70">
               <span className="text-axon-dim">SECURITY:</span>
