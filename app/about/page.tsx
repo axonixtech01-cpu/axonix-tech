@@ -54,7 +54,7 @@ const STACK_ITEMS = [
   { name: 'React', type: 'UI Architecture' },
   { name: 'TypeScript', type: 'Type Safety & Stability' },
   { name: 'Tailwind CSS', type: 'Design System & Styling' },
-  { name: 'Vercel Edge Network', type: 'Global Deployment & Speed' },
+  { name: 'Global Edge Hosting', type: 'Global Deployment & Speed' },
   { name: 'Figma', type: 'Interface Prototyping' },
 ];
 
