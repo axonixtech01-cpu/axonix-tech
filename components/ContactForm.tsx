@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Mail, Copy, Check, Send, AlertCircle, Info, Instagram, ArrowUpRight } from 'lucide-react';
+import { Mail, Copy, Check, Send, AlertCircle, Info, Instagram, ArrowUpRight, BadgePercent } from 'lucide-react';
+import { DISCOUNT_CODE } from '@/lib/site';
 
 interface FormData {
   fullName: string;
@@ -10,6 +11,7 @@ interface FormData {
   projectType: string;
   timeline: string;
   details: string;
+  wantsDiscount: boolean;
 }
 
 interface ServiceOption {
@@ -66,8 +68,9 @@ export const ContactForm: React.FC = () => {
     email: '',
     businessName: '',
     projectType: 'Website Design',
-    timeline: 'Within 2-3 weeks',
+    timeline: 'Standard (1–2 weeks)',
     details: '',
+    wantsDiscount: false,
   });
 
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
@@ -79,7 +82,13 @@ export const ContactForm: React.FC = () => {
   // URLSearchParams decodes percent-encoding and "+" automatically. Reading window.location
   // inside useEffect keeps the contact page statically rendered (no Suspense boundary needed).
   useEffect(() => {
-    const requested = new URLSearchParams(window.location.search).get('service');
+    const params = new URLSearchParams(window.location.search);
+    // /contact?discount=1 (from the "Ask for a discount" buttons) pre-ticks the discount box.
+    const discount = (params.get('discount') || '').toLowerCase();
+    if (discount === '1' || discount === 'true' || discount === 'yes') {
+      setFormData((prev) => ({ ...prev, wantsDiscount: true }));
+    }
+    const requested = params.get('service');
     if (!requested) return;
     const matched = findServiceOption(requested);
     if (matched) {
@@ -117,7 +126,9 @@ Client: ${formData.fullName}
 Contact: ${formData.email}
 Business: ${formData.businessName || 'N/A'}
 Service: ${formData.projectType}
-Timeline: ${formData.timeline}
+Timeline: ${formData.timeline}${
+      formData.wantsDiscount ? `\nDiscount: Yes, I'd like to ask about a discount (code ${DISCOUNT_CODE})` : ''
+    }
 
 Project Overview:
 ${formData.details}
@@ -142,7 +153,7 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
     e.preventDefault();
     if (validate()) {
       const subject = encodeURIComponent(
-        `[Project Inquiry] ${formData.projectType} — ${formData.fullName} ${
+        `[Project Inquiry]${formData.wantsDiscount ? ` [${DISCOUNT_CODE}]` : ''} ${formData.projectType} — ${formData.fullName} ${
           formData.businessName ? `(${formData.businessName})` : ''
         }`
       );
@@ -309,6 +320,32 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
             <option value="Initial Planning">Just exploring ideas</option>
           </select>
         </div>
+
+        {/* Discount request */}
+        <label
+          htmlFor="wantsDiscount"
+          className={`flex cursor-pointer items-start gap-3 rounded-lg border p-3.5 transition-colors ${
+            formData.wantsDiscount
+              ? 'border-amber-400/60 bg-amber-400/10'
+              : 'border-axon-border bg-axon-bg hover:border-amber-400/40'
+          }`}
+        >
+          <input
+            id="wantsDiscount"
+            type="checkbox"
+            checked={formData.wantsDiscount}
+            onChange={(e) => setFormData({ ...formData, wantsDiscount: e.target.checked })}
+            className="mt-0.5 h-4 w-4 shrink-0 accent-amber-400"
+          />
+          <span className="text-xs sm:text-sm text-axon-muted leading-relaxed">
+            <span className="flex items-center gap-1.5 font-semibold text-axon-text">
+              <BadgePercent className="h-4 w-4 text-amber-300" aria-hidden="true" />
+              I&apos;d like to ask about a discount
+            </span>
+            Adds code <strong className="font-mono text-amber-300">{DISCOUNT_CODE}</strong> to your brief. Extra
+            discounts may be available for early clients, students and small local businesses.
+          </span>
+        </label>
 
         {/* Project Details */}
         <div>
