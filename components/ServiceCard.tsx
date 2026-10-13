@@ -6,6 +6,8 @@ import {
   RefreshCw, 
   LayoutGrid, 
   BriefcaseBusiness,
+  Presentation,
+  Bot,
   CheckCircle2,
   ArrowRight
 } from 'lucide-react';
@@ -13,7 +15,15 @@ import Link from 'next/link';
 
 export interface ServiceItem {
   id: string;
-  iconName: 'palette' | 'responsive' | 'landing' | 'redesign' | 'uiux' | 'business';
+  iconName:
+    | 'palette'
+    | 'responsive'
+    | 'landing'
+    | 'redesign'
+    | 'uiux'
+    | 'business'
+    | 'presentation'
+    | 'chatbot';
   title: string;
   badge: string;
   shortDesc: string;
@@ -37,6 +47,8 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, detailed = fa
       case 'redesign': return <RefreshCw {...props} />;
       case 'uiux': return <LayoutGrid {...props} />;
       case 'business': return <BriefcaseBusiness {...props} />;
+      case 'presentation': return <Presentation {...props} />;
+      case 'chatbot': return <Bot {...props} />;
       default: return <Palette {...props} />;
     }
   };
@@ -83,8 +95,8 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, detailed = fa
       </div>
 
       {/* Tech Stack & Action Footer */}
-      <div className="mt-6 border-t border-axon-border/60 pt-4 flex items-center justify-between">
-        <div className="flex flex-wrap gap-1">
+      <div className="mt-6 border-t border-axon-border/60 pt-4 flex items-center justify-between gap-3">
+        <div className="flex min-w-0 flex-wrap gap-1">
           {service.techStack.map((tech, i) => (
             <span
               key={i}
@@ -97,7 +109,7 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({ service, detailed = fa
         
         <Link
           href={`/contact?service=${encodeURIComponent(service.title)}`}
-          className="inline-flex items-center gap-1 text-xs font-mono font-medium text-axon-blue hover:text-axon-accent transition-colors group-hover:translate-x-0.5"
+          className="inline-flex shrink-0 items-center gap-1 text-xs font-mono font-medium text-axon-blue hover:text-axon-accent transition-colors group-hover:translate-x-0.5"
           aria-label={`Inquire about ${service.title}`}
         >
           <span>Enquire</span>
