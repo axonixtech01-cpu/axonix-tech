@@ -1,10 +1,15 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { AxVisual } from '@/components/AxVisual';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCard, ServiceItem } from '@/components/ServiceCard';
 import { ProjectCard, ProjectData } from '@/components/ProjectCard';
 import { ProcessSection } from '@/components/ProcessSection';
+import { PricingSection } from '@/components/PricingSection';
+import { NeuralBackground } from '@/components/NeuralBackground';
+import { RotatingWords } from '@/components/RotatingWords';
+import { ServicesMarquee } from '@/components/ServicesMarquee';
 import { 
   ArrowRight, 
   Sparkles, 
@@ -13,8 +18,14 @@ import {
   Smartphone, 
   Zap,
   Mail,
-  Instagram
+  Instagram,
+  Tag
 } from 'lucide-react';
+
+// Home inherits the root title/description/share image; this only adds the canonical URL.
+export const metadata: Metadata = {
+  alternates: { canonical: '/' },
+};
 
 // Total number of services listed in ALL_SERVICES on /services.
 // Update this if services are added to or removed from that page.
@@ -158,6 +169,9 @@ export default function HomePage() {
         {/* Ambient Top Glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 radial-glow pointer-events-none" />
 
+        {/* Interactive axon / neural network background */}
+        <NeuralBackground className="absolute inset-0 h-full w-full" />
+
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
             
@@ -165,7 +179,7 @@ export default function HomePage() {
             <div className="space-y-6 text-center lg:col-span-7 lg:text-left">
               
               {/* Agency Tagline Pill */}
-              <div className="inline-flex items-center gap-2 rounded-full border border-axon-blue/30 bg-axon-surface/80 px-4 py-1.5 backdrop-blur-md">
+              <div className="hero-enter hero-d1 inline-flex items-center gap-2 rounded-full border border-axon-blue/30 bg-axon-surface/80 px-4 py-1.5 backdrop-blur-md">
                 <span className="flex h-2 w-2 rounded-full bg-axon-blue animate-pulse" />
                 <span className="text-xs font-mono font-medium tracking-wide text-axon-accent">
                   YOUR VISION. OUR CODE.
@@ -173,7 +187,7 @@ export default function HomePage() {
               </div>
 
               {/* Primary Required Headline */}
-              <h1 className="text-3xl font-black tracking-tight text-axon-text sm:text-5xl lg:text-5xl xl:text-6xl uppercase leading-tight sm:leading-none">
+              <h1 className="hero-enter hero-d2 text-3xl font-black tracking-tight text-axon-text sm:text-5xl lg:text-5xl xl:text-6xl uppercase leading-tight sm:leading-none">
                 WE BUILD DIGITAL <br className="hidden sm:inline" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-axon-text via-axon-blue to-axon-accent">
                   EXPERIENCES
@@ -182,16 +196,41 @@ export default function HomePage() {
                 BUSINESSES FORWARD.
               </h1>
 
+              {/* Typing service line */}
+              <div className="hero-enter hero-d3 flex justify-center lg:justify-start">
+                <div className="inline-flex w-[17.5rem] sm:w-[21rem] items-center gap-2 rounded-lg border border-axon-border bg-axon-bg/80 px-3.5 py-2.5 font-mono text-sm sm:text-base shadow-glow-sm backdrop-blur-md">
+                  <span className="text-axon-blue" aria-hidden="true">&gt;</span>
+                  <span className="text-axon-muted">we build</span>
+                  <RotatingWords />
+                </div>
+              </div>
+
               {/* Supporting Text */}
-              <p className="max-w-2xl text-base sm:text-lg text-axon-muted leading-relaxed mx-auto lg:mx-0">
+              <p className="hero-enter-soft max-w-2xl text-base sm:text-lg text-axon-muted leading-relaxed mx-auto lg:mx-0">
                 Axonix Tech designs and engineers modern responsive websites, professional presentations, and website chatbots for businesses, coaching centres, restaurants, students, and growing brands. Performance-focused, engineered for mobile screens, and built to turn attention into meaningful client enquiries.
               </p>
 
+              {/* Price hint */}
+              <div className="hero-enter hero-d3 flex justify-center lg:justify-start">
+                <a
+                  href="#pricing"
+                  className="group inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/[0.08] px-4 py-1.5 text-xs sm:text-sm text-axon-muted transition-colors hover:border-amber-400/60"
+                >
+                  <Tag className="h-3.5 w-3.5 text-amber-300" aria-hidden="true" />
+                  <span>
+                    Websites from <strong className="font-mono text-axon-text">₹4,999</strong>
+                    <span className="text-amber-300"> · extra discount on request</span>
+                  </span>
+                  <ArrowRight className="h-3.5 w-3.5 text-amber-300 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </a>
+              </div>
+
               {/* CTA Group */}
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <div className="hero-enter hero-d4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
                 <Link
                   href="/contact"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-axon-blue px-7 py-3.5 text-base font-semibold text-axon-bg shadow-glow-sm transition-all duration-200 hover:bg-axon-accent hover:shadow-glow-md active:scale-98"
+                  data-ripple
+                  className="btn-shine w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-axon-blue px-7 py-3.5 text-base font-semibold text-axon-bg shadow-glow-sm transition-all duration-200 hover:bg-axon-accent hover:shadow-glow-md active:scale-98"
                 >
                   <span>Start a Project</span>
                   <ArrowRight className="h-5 w-5" />
@@ -199,14 +238,16 @@ export default function HomePage() {
 
                 <Link
                   href="/work"
+                  data-ripple
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-axon-border bg-axon-surface/80 px-7 py-3.5 text-base font-medium text-axon-text transition-all duration-200 hover:border-axon-blue/50 hover:bg-axon-surface active:scale-98"
                 >
                   <span>Explore Our Work</span>
                 </Link>
               </div>
 
+
               {/* Agency Core Highlights */}
-              <div className="pt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-axon-border/80 text-left">
+              <div className="hero-enter hero-d5 pt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-axon-border/80 text-left">
                 <div className="flex items-center gap-2">
                   <Smartphone className="h-4 w-4 text-axon-blue shrink-0" />
                   <span className="text-xs text-axon-muted">Mobile-First (360px+)</span>
@@ -224,18 +265,23 @@ export default function HomePage() {
             </div>
 
             {/* Right Graphic Column: Bespoke AX Terminal Visual */}
-            <div className="lg:col-span-5 flex justify-center">
-              <AxVisual />
+            <div className="hero-enter hero-d3 lg:col-span-5 flex justify-center">
+              <div className="w-full animate-float-slow">
+                <AxVisual />
+              </div>
             </div>
 
           </div>
         </div>
       </section>
 
+      {/* Scrolling services ribbon */}
+      <ServicesMarquee />
+
       {/* 2. SERVICES PREVIEW SECTION */}
       <section className="py-20 bg-axon-surface/40 border-t border-axon-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <div data-reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <SectionHeading
               align="left"
               badge="// AGENCY CAPABILITIES"
@@ -251,18 +297,29 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {/* Mobile: swipe carousel. Tablet/desktop: grid. */}
+          <div
+            data-reveal
+            className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 md:pb-0 lg:grid-cols-3"
+          >
             {FEATURED_SERVICES.map((service) => (
-              <ServiceCard key={service.id} service={service} />
+              <ServiceCard
+                key={service.id}
+                service={service}
+                className="w-[85%] shrink-0 snap-center sm:w-[60%] md:w-auto"
+              />
             ))}
           </div>
+          <p className="mt-2 text-center text-[11px] font-mono text-axon-dim md:hidden" aria-hidden="true">
+            ← Swipe to see all {FEATURED_SERVICES.length} featured services →
+          </p>
         </div>
       </section>
 
       {/* 3. FEATURED CONCEPT PROJECTS SECTION */}
       <section className="py-20 bg-axon-bg border-t border-axon-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+          <div data-reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <SectionHeading
               align="left"
               badge="// PORTFOLIO DEMONSTRATIONS"
@@ -278,11 +335,23 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
+          {/* Mobile/tablet: swipe carousel. Desktop: grid. */}
+          <div
+            data-reveal
+            className="no-scrollbar -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-8 lg:overflow-visible lg:px-0 lg:pb-0"
+          >
             {FEATURED_CONCEPTS.map((concept) => (
-              <ProjectCard key={concept.id} project={concept} />
+              <div
+                key={concept.id}
+                className="flex w-[88%] shrink-0 snap-center flex-col sm:w-[60%] lg:w-auto [&>article]:flex-1"
+              >
+                <ProjectCard project={concept} />
+              </div>
             ))}
           </div>
+          <p className="mt-2 text-center text-[11px] font-mono text-axon-dim lg:hidden" aria-hidden="true">
+            ← Swipe to explore the live demos →
+          </p>
 
           <div className="mt-8 rounded-xl border border-axon-border bg-axon-surface/50 p-4 text-center text-xs text-axon-muted font-mono">
             <span>Notice: Concept projects are original design demonstrations engineered by Axonix Tech to showcase domain-specific capabilities.</span>
@@ -290,15 +359,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. PROCESS SECTION */}
+      {/* 4. PRICING (with discount call-to-action) */}
+      <PricingSection />
+
+      {/* 5. PROCESS SECTION */}
       <ProcessSection />
 
-      {/* 5. FINAL CONTACT CTA SECTION */}
+      {/* 6. FINAL CONTACT CTA SECTION */}
       <section className="relative py-20 bg-axon-surface border-t border-axon-border overflow-hidden">
         {/* Subtle radial glow */}
         <div className="absolute inset-0 radial-glow pointer-events-none" />
 
-        <div className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-8">
+        <div data-reveal className="relative mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 text-center space-y-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-axon-blue/30 bg-axon-blue/10 px-4 py-1.5 text-xs font-mono text-axon-accent">
             <span>READY TO ELEVATE YOUR DIGITAL PRESENCE?</span>
           </div>
@@ -314,7 +386,8 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
             <Link
               href="/contact"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-axon-blue px-8 py-4 text-base font-semibold text-axon-bg shadow-glow-sm transition-all duration-200 hover:bg-axon-accent hover:shadow-glow-md active:scale-98"
+              data-ripple
+              className="btn-shine w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-axon-blue px-8 py-4 text-base font-semibold text-axon-bg shadow-glow-sm transition-all duration-200 hover:bg-axon-accent hover:shadow-glow-md active:scale-98"
             >
               <span>Start Your Project</span>
               <ArrowRight className="h-5 w-5" />
