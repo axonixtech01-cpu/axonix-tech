@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, Copy, Check, Send, AlertCircle, Info, Instagram } from 'lucide-react';
+import { Mail, Copy, Check, Send, AlertCircle, Info, Instagram, ArrowUpRight } from 'lucide-react';
 
 interface FormData {
   fullName: string;
@@ -24,6 +24,7 @@ export const ContactForm: React.FC = () => {
 
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [copied, setCopied] = useState(false);
+  const [dmTriggered, setDmTriggered] = useState(false);
   const [submittedDraft, setSubmittedDraft] = useState(false);
 
   const validate = (): boolean => {
@@ -34,71 +35,58 @@ export const ContactForm: React.FC = () => {
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Please provide an email address.';
-    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address.';
+      newErrors.email = 'Please provide an email address or social handle.';
     }
 
     if (!formData.details.trim()) {
       newErrors.details = 'Please briefly describe your project goals.';
-    } else if (formData.details.trim().length < 15) {
-      newErrors.details = 'Please provide at least 15 characters describing your project.';
+    } else if (formData.details.trim().length < 10) {
+      newErrors.details = 'Please provide at least 10 characters describing your project.';
     }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const generateMailtoUrl = (): string => {
-    const subject = encodeURIComponent(
-      `[Project Inquiry] ${formData.projectType} — ${formData.fullName} ${
-        formData.businessName ? `(${formData.businessName})` : ''
-      }`
-    );
-
-    const bodyText = `Hello Axonix Tech team,
-
-I would like to discuss a project with your agency. Here are the specifications:
-
-Name: ${formData.fullName}
-Email: ${formData.email}
-Business / Brand: ${formData.businessName || 'Not specified'}
-Service Requested: ${formData.projectType}
-Estimated Timeline: ${formData.timeline}
-
-Project Overview & Objectives:
-${formData.details}
-
-Looking forward to your reply.
-
-Best regards,
-${formData.fullName}`;
-
-    return `mailto:Axonix.tech01@gmail.com?subject=${subject}&body=${encodeURIComponent(
-      bodyText
-    )}`;
-  };
-
   const getBriefText = (): string => {
-    return `AXONIX TECH PROJECT BRIEF
+    return `⚡ AXONIX TECH PROJECT BRIEF
 -----------------------------
-Client Name: ${formData.fullName}
-Email: ${formData.email}
+Client: ${formData.fullName}
+Contact: ${formData.email}
 Business: ${formData.businessName || 'N/A'}
 Service: ${formData.projectType}
 Timeline: ${formData.timeline}
 
-Project Details:
+Project Overview:
 ${formData.details}
 -----------------------------
-Target: Axonix.tech01@gmail.com`;
+Target: @axo_nixtech / Axonix.tech01@gmail.com`;
+  };
+
+  const handleInstagramDM = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (validate()) {
+      const brief = getBriefText();
+      navigator.clipboard.writeText(brief).then(() => {
+        setDmTriggered(true);
+        setTimeout(() => {
+          window.open('https://ig.me/m/axo_nixtech', '_blank');
+        }, 600);
+      });
+    }
   };
 
   const handleLaunchEmail = (e: React.FormEvent) => {
     e.preventDefault();
     if (validate()) {
+      const subject = encodeURIComponent(
+        `[Project Inquiry] ${formData.projectType} — ${formData.fullName} ${
+          formData.businessName ? `(${formData.businessName})` : ''
+        }`
+      );
+      const body = encodeURIComponent(getBriefText());
       setSubmittedDraft(true);
-      window.location.href = generateMailtoUrl();
+      window.location.href = `mailto:Axonix.tech01@gmail.com?subject=${subject}&body=${body}`;
     }
   };
 
@@ -114,17 +102,22 @@ Target: Axonix.tech01@gmail.com`;
   return (
     <div className="rounded-2xl border border-axon-border bg-axon-surface/90 p-5 sm:p-8 shadow-xl">
       <div className="border-b border-axon-border pb-5 mb-6">
-        <h3 className="text-xl font-bold text-axon-text sm:text-2xl">
-          Project Specification Brief
-        </h3>
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-bold text-axon-text sm:text-2xl">
+            Project Specification Brief
+          </h3>
+          <span className="rounded bg-axon-blue/10 px-2.5 py-1 text-xs font-mono font-medium text-axon-accent border border-axon-blue/30">
+            FAST RESPONSE
+          </span>
+        </div>
         <p className="mt-1 text-xs sm:text-sm text-axon-muted">
-          Fill in your project parameters. This tool configures a structured email draft directly for{' '}
-          <span className="text-axon-blue font-mono font-medium">Axonix.tech01@gmail.com</span>.
+          Fill in your project details. You can send this brief directly via{' '}
+          <strong className="text-axon-text">Instagram DM (@axo_nixtech)</strong> or launch a pre-filled email draft.
         </p>
       </div>
 
-      <form onSubmit={handleLaunchEmail} className="space-y-4">
-        {/* Row 1: Name and Email */}
+      <form className="space-y-4">
+        {/* Row 1: Name and Contact */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label
@@ -158,14 +151,14 @@ Target: Axonix.tech01@gmail.com`;
               htmlFor="email"
               className="block font-mono text-xs font-semibold uppercase tracking-wider text-axon-dim mb-1.5"
             >
-              Email Address *
+              Email or Instagram Handle *
             </label>
             <input
               id="email"
-              type="email"
+              type="text"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              placeholder="name@business.com"
+              placeholder="name@business.com or @yourhandle"
               className={`w-full rounded-lg border bg-axon-bg px-3.5 py-2.5 text-sm text-axon-text placeholder-axon-dim/50 transition-colors focus:outline-none focus:ring-1 ${
                 errors.email
                   ? 'border-rose-500/80 focus:ring-rose-500'
@@ -213,15 +206,13 @@ Target: Axonix.tech01@gmail.com`;
               onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
               className="w-full rounded-lg border border-axon-border bg-axon-bg px-3.5 py-2.5 text-sm text-axon-text transition-colors focus:border-axon-blue focus:outline-none focus:ring-1 focus:ring-axon-blue"
             >
-              <option value="Website Design">Website Design</option>
-              <option value="Responsive Website Development">Responsive Web Development</option>
-              <option value="Landing Pages">High-Impact Landing Page</option>
+              <option value="Starter Launch (₹4,999)">Starter Launch Plan (₹4,999)</option>
+              <option value="Growth Business (₹9,999)">Growth Business Plan (₹9,999)</option>
+              <option value="Custom Architecture">Custom Scope / Startup Portal</option>
+              <option value="Website Design">Website Design &amp; Wireframing</option>
+              <option value="Responsive Web Development">Responsive Web Development</option>
+              <option value="Landing Page">High-Impact Landing Page</option>
               <option value="Website Redesign">Complete Website Redesign</option>
-              <option value="UI/UX Design">UI/UX Wireframing &amp; Design</option>
-              <option value="Coaching Institute Website">Coaching Institute Portal</option>
-              <option value="Restaurant & Cafe Website">Restaurant / Cafe Website</option>
-              <option value="Business Portfolio">Small Business / Portfolio</option>
-              <option value="Custom Consultation">Other / Custom Scope</option>
             </select>
           </div>
         </div>
@@ -240,10 +231,10 @@ Target: Axonix.tech01@gmail.com`;
             onChange={(e) => setFormData({ ...formData, timeline: e.target.value })}
             className="w-full rounded-lg border border-axon-border bg-axon-bg px-3.5 py-2.5 text-sm text-axon-text transition-colors focus:border-axon-blue focus:outline-none focus:ring-1 focus:ring-axon-blue"
           >
-            <option value="Urgent (1–2 weeks)">Urgent (1–2 weeks)</option>
-            <option value="Within 2–3 weeks">Standard (2–3 weeks)</option>
-            <option value="Within 1 month">Flexible (Within 1 month)</option>
-            <option value="Planning / Exploratory stage">Exploratory / Initial Planning</option>
+            <option value="Urgent (3–5 days)">Urgent (3–5 days)</option>
+            <option value="Standard (1–2 weeks)">Standard (1–2 weeks)</option>
+            <option value="Flexible (Within 1 month)">Flexible (Within 1 month)</option>
+            <option value="Initial Planning">Just exploring ideas</option>
           </select>
         </div>
 
@@ -275,51 +266,75 @@ Target: Axonix.tech01@gmail.com`;
           )}
         </div>
 
-        {/* Action Controls */}
+        {/* Action Controls: Primary Instagram DM + Email + Copy */}
         <div className="pt-2 flex flex-col sm:flex-row gap-3">
+          {/* Primary Instagram DM Button */}
           <button
-            type="submit"
-            className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-axon-blue px-6 py-3 text-sm font-semibold text-axon-bg shadow-glow-sm transition-all duration-200 hover:bg-axon-accent hover:shadow-glow-md active:scale-98"
+            type="button"
+            onClick={handleInstagramDM}
+            className="flex-1 inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 via-rose-500 to-amber-500 px-5 py-3 text-sm font-bold text-white shadow-lg transition-all duration-200 hover:opacity-95 active:scale-98"
           >
-            <Send className="h-4 w-4" />
-            <span>Launch Email Draft</span>
+            <Instagram className="h-4 w-4" />
+            <span>Send via Instagram DM</span>
+            <ArrowUpRight className="h-3.5 w-3.5" />
           </button>
 
+          {/* Email Draft Button */}
+          <button
+            type="button"
+            onClick={handleLaunchEmail}
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-axon-blue px-4 py-3 text-sm font-semibold text-axon-bg shadow-glow-sm hover:bg-axon-accent active:scale-98 transition-colors"
+          >
+            <Mail className="h-4 w-4" />
+            <span>Email Brief</span>
+          </button>
+
+          {/* Copy Brief Button */}
           <button
             type="button"
             onClick={handleCopyBrief}
-            className="inline-flex items-center justify-center gap-2 rounded-lg border border-axon-border bg-axon-surface px-5 py-3 text-sm font-medium text-axon-text transition-all duration-200 hover:border-axon-blue/50 hover:bg-axon-surface/80 active:scale-98"
+            className="inline-flex items-center justify-center gap-2 rounded-lg border border-axon-border bg-axon-surface px-4 py-3 text-sm font-medium text-axon-text hover:border-axon-blue/50 active:scale-98 transition-colors"
           >
             {copied ? (
               <>
                 <Check className="h-4 w-4 text-emerald-400" />
-                <span className="text-emerald-400">Brief Copied!</span>
+                <span className="text-emerald-400">Copied!</span>
               </>
             ) : (
               <>
                 <Copy className="h-4 w-4 text-axon-blue" />
-                <span>Copy Project Brief</span>
+                <span>Copy</span>
               </>
             )}
           </button>
         </div>
 
-        {/* Feedback message when submitted */}
-        {submittedDraft && (
+        {/* Feedback for Instagram DM click */}
+        {dmTriggered && (
           <div className="mt-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 p-3 text-xs text-emerald-300 flex items-start gap-2">
-            <Check className="h-4 w-4 shrink-0 mt-0.5" />
+            <Check className="h-4 w-4 shrink-0 mt-0.5 text-emerald-400" />
             <span>
-              Your email client should open shortly with the pre-filled message. If it doesn&apos;t open automatically on your phone, click &ldquo;Copy Project Brief&rdquo; and paste it into your email app or send it via Instagram DM.
+              <strong>Project brief copied to your clipboard!</strong> We are opening Instagram now. Just paste your brief into the DM chat with <span className="underline">@axo_nixtech</span>.
             </span>
           </div>
         )}
 
-        {/* Honest Disclosure Note */}
+        {/* Feedback message for Email */}
+        {submittedDraft && (
+          <div className="mt-2 rounded-lg bg-axon-blue/10 border border-axon-blue/30 p-3 text-xs text-axon-accent flex items-start gap-2">
+            <Check className="h-4 w-4 shrink-0 mt-0.5" />
+            <span>
+              Your email client should open shortly with the pre-filled message addressed to <strong>Axonix.tech01@gmail.com</strong>.
+            </span>
+          </div>
+        )}
+
+        {/* Privacy Callout */}
         <div className="mt-4 flex items-start gap-2 rounded-lg bg-axon-bg p-3 border border-axon-border/60 text-xs text-axon-muted">
           <Info className="h-4 w-4 text-axon-blue shrink-0 mt-0.5" />
           <p className="leading-relaxed">
-            <strong className="text-axon-text">Direct Communication Architecture:</strong>{' '}
-            To guarantee complete data privacy with zero database overhead, this form directly prepares a pre-filled draft in your personal email application (Gmail, Apple Mail, Outlook). We do not capture or store your personal submissions on external servers.
+            <strong className="text-axon-text">Complete Privacy Guarantee:</strong>{' '}
+            Your project brief is delivered directly to our official agency Instagram (<a href="https://www.instagram.com/axo_nixtech/" target="_blank" rel="noopener noreferrer" className="text-axon-blue underline">@axo_nixtech</a>) or email. We never publish or sell client contact details.
           </p>
         </div>
       </form>
