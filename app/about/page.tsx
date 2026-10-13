@@ -29,12 +29,12 @@ const PILLARS = [
   {
     icon: Smartphone,
     title: 'Mobile-First by Default',
-    desc: 'Over 80% of local visitors in India and worldwide browse websites from a phone. We test every breakpoint starting from 360px wide devices upwards, ensuring zero horizontal scroll, instant touch targets, and legible typography on all screen sizes.',
+    desc: 'Most local visitors in India and worldwide browse websites from a phone. We test every breakpoint starting from 360px wide devices upwards, ensuring zero horizontal scroll, instant touch targets, and legible typography on all screen sizes.',
   },
   {
     icon: Cpu,
     title: 'Modern Next.js & React Core',
-    desc: 'We bypass heavy legacy website builders and clunky drag-and-drop systems. By writing clean code with Next.js App Router and Tailwind CSS, our websites load rapidly, remain secure, and score exceptionally well in performance audits.',
+    desc: 'We bypass heavy legacy website builders and clunky drag-and-drop systems. By writing clean code with Next.js App Router and Tailwind CSS, our websites are built to load quickly, stay secure, and treat performance audit scores as a key target.',
   },
   {
     icon: Target,
@@ -145,7 +145,7 @@ export default function AboutPage() {
               </h2>
             </div>
             <p className="text-xs sm:text-sm text-axon-muted max-w-md">
-              We select modern, dependable technologies that offer long-term stability, zero vendor lock-in, and instant loading speeds.
+              We select modern, dependable technologies that offer long-term stability, zero vendor lock-in, and fast loading speeds.
             </p>
           </div>
 
