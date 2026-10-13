@@ -1,19 +1,20 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ProjectCard, ProjectData } from '@/components/ProjectCard';
 import Link from 'next/link';
 import { ArrowRight, Layers, Sparkles, AlertCircle } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/work',
   title: 'Work & Concepts — Portfolio Demonstrations',
   description:
     'Explore concept projects engineered by Axonix Tech: restaurant menus, coaching institute portals, and technology startup landing pages.',
-  openGraph: {
-    title: 'Work & Concepts | Axonix Tech',
-    description: 'Demonstrating web engineering and UI design capabilities across diverse industries.',
-  },
-};
+  ogTitle: 'Work & Concepts | Axonix Tech',
+  ogDescription:
+    'Demonstrating web engineering and UI design capabilities across diverse industries.',
+});
 
 const CONCEPT_PROJECTS: ProjectData[] = [
   {
