@@ -324,7 +324,7 @@ export default function RestaurantDemoPage() {
           
           {ownerMode && (
             <div className="mb-8 rounded-lg bg-amber-400/10 border border-amber-400/30 p-2.5 font-sans text-xs text-amber-300">
-              <strong>ZERO PDF TRAP:</strong> Most restaurants lose 70% of diners by forcing them to download a 15MB PDF on 4G data. This on-page menu searches instantly, shows Veg/Non-Veg icons, and lets customers simulate orders before sitting down!
+              <strong>ZERO PDF TRAP:</strong> Heavy PDF menus are slow on mobile data, and many diners simply give up. This on-page menu searches instantly, shows Veg/Non-Veg icons, and lets customers simulate orders before sitting down!
             </div>
           )}
 
@@ -568,6 +568,9 @@ export default function RestaurantDemoPage() {
                 </h4>
                 <p className="text-xs text-stone-400">
                   We look forward to welcoming you for <strong className="text-amber-400">{booking.guests}</strong> at <strong className="text-amber-400">{booking.time}</strong>.
+                </p>
+                <p className="mt-2 rounded-md border border-amber-400/30 bg-amber-400/10 px-2.5 py-1.5 text-[11px] font-mono text-amber-300">
+                  Demo only — no details were sent or stored. On a real client site, this goes straight to the business&apos;s WhatsApp or email.
                 </p>
               </div>
             )}
