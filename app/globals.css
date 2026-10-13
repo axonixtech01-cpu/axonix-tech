@@ -137,3 +137,240 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* =====================================================================
+   PHASE 1 MOTION SYSTEM
+   Driven by data-attributes + components/MotionEffects.tsx.
+   Every effect is disabled for visitors who prefer reduced motion.
+   ===================================================================== */
+
+/* Registered so the spotlight intensity can transition smoothly */
+@property --spot {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+/* ---------- Scroll reveal (data-reveal) ----------
+   'reveal-ready' is set by an inline script before first paint;
+   'reveal-active' is set once the observer runs. If JS never runs,
+   the fallback animation shows everything after 2.5s. */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  translate: 0 28px;
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    translate 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    scale 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    --spot 0.35s ease;
+}
+.reveal-ready [data-reveal='zoom'] {
+  translate: none;
+  scale: 0.94;
+}
+.reveal-ready [data-reveal='fade'] {
+  translate: none;
+}
+.reveal-ready [data-reveal].is-revealed {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+.reveal-ready:not(.reveal-active) [data-reveal] {
+  animation: revealFallback 0.6s ease 2.5s forwards;
+}
+@keyframes revealFallback {
+  to { opacity: 1; translate: 0 0; scale: 1; }
+}
+
+/* ---------- Hero entrance (CSS-only, no JS needed) ---------- */
+.hero-enter {
+  animation: heroEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+/* Paragraph keeps full opacity so it never delays Largest Contentful Paint */
+.hero-enter-soft {
+  animation: heroEnterSoft 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.hero-d1 { animation-delay: 0.08s; }
+.hero-d2 { animation-delay: 0.18s; }
+.hero-d3 { animation-delay: 0.3s; }
+.hero-d4 { animation-delay: 0.42s; }
+.hero-d5 { animation-delay: 0.55s; }
+@keyframes heroEnter {
+  from { opacity: 0; translate: 0 22px; filter: blur(6px); }
+  to { opacity: 1; translate: 0 0; filter: blur(0); }
+}
+@keyframes heroEnterSoft {
+  from { translate: 0 14px; }
+  to { translate: 0 0; }
+}
+
+/* ---------- Neural network canvas ---------- */
+.neural-canvas {
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.neural-canvas.is-ready {
+  opacity: 1;
+}
+
+/* ---------- Typewriter cursor ---------- */
+.type-cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1.05em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  background: #36c5ff;
+  box-shadow: 0 0 10px rgba(54, 197, 255, 0.7);
+  animation: cursorBlink 1s steps(1) infinite;
+}
+@keyframes cursorBlink {
+  50% { opacity: 0; }
+}
+
+/* ---------- Spotlight cards (data-spotlight / data-tilt) ---------- */
+[data-spotlight] {
+  --mx: 50%;
+  --my: -40%;
+  background-image: radial-gradient(
+    420px circle at var(--mx) var(--my),
+    rgba(0, 180, 255, calc(0.13 * var(--spot))),
+    transparent 60%
+  );
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    translate 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    scale 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    --spot 0.35s ease;
+}
+[data-spotlight]:hover,
+[data-spotlight].spot-on {
+  --spot: 1;
+}
+/* Glowing border ring that follows the pointer */
+[data-spotlight]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(
+    260px circle at var(--mx) var(--my),
+    rgba(54, 197, 255, calc(0.9 * var(--spot))),
+    transparent 65%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+  transition: --spot 0.35s ease;
+}
+[data-spotlight]:hover::after,
+[data-spotlight].spot-on::after {
+  --spot: 1;
+}
+@media (hover: hover) and (pointer: fine) {
+  [data-tilt] {
+    transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  }
+}
+
+/* ---------- Infinite marquee ---------- */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 38s linear infinite;
+}
+.marquee-track.marquee-slow {
+  animation-duration: 52s;
+}
+.marquee-reverse .marquee-track {
+  animation-direction: reverse;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marqueeScroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Button shine sweep ---------- */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.5) 50%, transparent 70%);
+  translate: -130% 0;
+  animation: btnShine 4.8s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes btnShine {
+  0%, 62% { translate: -130% 0; }
+  100% { translate: 130% 0; }
+}
+
+/* ---------- Tap ripple (data-ripple) ---------- */
+[data-ripple] {
+  position: relative;
+  overflow: hidden;
+}
+.ripple-ink {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.35);
+  transform: scale(0);
+  animation: rippleOut 0.65s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes rippleOut {
+  to { transform: scale(1); opacity: 0; }
+}
+
+/* ---------- Horizontal swipe carousels ---------- */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Reduced motion: show everything, no movement ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-ready [data-reveal] {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+  }
+  .hero-enter,
+  .hero-enter-soft {
+    animation: none !important;
+  }
+  .btn-shine::before,
+  .marquee-track,
+  .type-cursor {
+    animation: none !important;
+  }
+  [data-tilt] {
+    transform: none !important;
+  }
+}
