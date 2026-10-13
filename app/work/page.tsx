@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/site';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ProjectCard, ProjectData } from '@/components/ProjectCard';
+import { SamplesStrip } from '@/components/SamplesStrip';
 import Link from 'next/link';
 import { ArrowRight, Layers, Sparkles, AlertCircle } from 'lucide-react';
 
@@ -99,6 +100,14 @@ export default function WorkPage() {
           {CONCEPT_PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
+        </div>
+
+        {/* More samples: presentations + chatbot */}
+        <div className="mt-16">
+          <h2 className="mb-5 text-center text-xl font-extrabold text-axon-text sm:text-2xl">
+            Presentations &amp; Chatbots
+          </h2>
+          <SamplesStrip />
         </div>
 
         {/* Breakdown of Why Concept Work Matters */}
