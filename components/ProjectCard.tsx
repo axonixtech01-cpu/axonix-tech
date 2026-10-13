@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ExternalLink, Check, Sparkles, Layers } from 'lucide-react';
+import Link from 'next/link';
+import { ExternalLink, Check, Sparkles, Layers, ArrowUpRight } from 'lucide-react';
 
 export interface ProjectData {
   id: string;
@@ -13,6 +14,7 @@ export interface ProjectData {
   highlights: string[];
   mockupType: 'restaurant' | 'coaching' | 'startup';
   colorTheme: string;
+  demoUrl?: string;
 }
 
 interface ProjectCardProps {
@@ -21,6 +23,14 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [showDetails, setShowDetails] = useState(false);
+
+  // Determine direct live demo URL if available
+  const liveDemoUrl = 
+    project.mockupType === 'coaching' 
+      ? '/demo/coaching' 
+      : project.mockupType === 'restaurant' 
+      ? '/demo/restaurant' 
+      : undefined;
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-axon-border bg-axon-surface/90 shadow-lg transition-all duration-300 hover:border-axon-blue/50 hover:shadow-glow-sm">
@@ -36,9 +46,19 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               https://demo.{project.id}.axonix.dev
             </span>
           </div>
-          <span className="inline-flex items-center gap-1 rounded bg-axon-blue/15 px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-axon-accent border border-axon-blue/30">
-            DEMO CONCEPT
-          </span>
+          {liveDemoUrl ? (
+            <Link
+              href={liveDemoUrl}
+              className="inline-flex items-center gap-1 rounded bg-emerald-500/20 px-2 py-0.5 font-mono text-[10px] font-bold tracking-wider text-emerald-300 border border-emerald-500/40 hover:bg-emerald-500/30 transition-colors"
+            >
+              <span>CLICK TO TEST</span>
+              <ArrowUpRight className="h-3 w-3" />
+            </Link>
+          ) : (
+            <span className="inline-flex items-center gap-1 rounded bg-axon-blue/15 px-2 py-0.5 font-mono text-[10px] font-semibold tracking-wider text-axon-accent border border-axon-blue/30">
+              DEMO CONCEPT
+            </span>
+          )}
         </div>
 
         {/* Visual Preview Graphic: Bespoke CSS/SVG per Project Type */}
@@ -97,7 +117,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               {/* Action Bar */}
               <div className="flex items-center justify-between pt-1 border-t border-axon-border/40 text-[9px] font-mono text-axon-dim">
                 <span>OPEN: 12:00 PM – 11:30 PM</span>
-                <span className="text-emerald-400">● 1-Tap WhatsApp Reservation Ready</span>
+                <span className="text-emerald-400">● 1-Tap Table Reservation Ready</span>
               </div>
             </div>
           )}
@@ -240,16 +260,27 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </div>
         </div>
 
-        {/* Concept Architecture Disclosure */}
-        <div className="mt-6 border-t border-axon-border/70 pt-4 flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs font-mono text-axon-dim">
-            <Layers className="h-3.5 w-3.5 text-axon-blue" />
-            <span>Architecture Demo</span>
-          </div>
+        {/* Live Demo Trigger & Specs */}
+        <div className="mt-6 border-t border-axon-border/70 pt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          {liveDemoUrl ? (
+            <Link
+              href={liveDemoUrl}
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-axon-blue/15 border border-axon-blue/40 px-4 py-2 text-xs font-bold text-axon-accent hover:bg-axon-blue hover:text-axon-bg transition-all active:scale-95 shadow-sm"
+            >
+              <span>Launch Live Demo Website</span>
+              <ArrowUpRight className="h-3.5 w-3.5" />
+            </Link>
+          ) : (
+            <div className="flex items-center gap-2 text-xs font-mono text-axon-dim">
+              <Layers className="h-3.5 w-3.5 text-axon-blue" />
+              <span>Full Stack Architecture</span>
+            </div>
+          )}
+
           <button
             type="button"
             onClick={() => setShowDetails(!showDetails)}
-            className="text-xs font-mono font-semibold text-axon-accent hover:text-axon-text transition-colors"
+            className="text-xs font-mono font-semibold text-axon-dim hover:text-axon-text transition-colors self-end sm:self-center"
           >
             {showDetails ? 'Hide Specs' : 'View Specs'}
           </button>
