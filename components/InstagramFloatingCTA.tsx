@@ -54,8 +54,8 @@ export const InstagramFloatingCTA: React.FC = () => {
             href="https://ig.me/m/axo_nixtech"
             target="_blank"
             rel="noopener noreferrer"
+            data-umami-event="floating-instagram"
             className="flex items-center gap-2.5 text-xs font-semibold text-axon-text hover:text-axon-accent transition-colors"
-            aria-label="Direct Message Axonix Tech on Instagram"
           >
             <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white shadow-sm">
               <Instagram className="h-5 w-5" />
