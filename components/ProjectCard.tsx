@@ -91,9 +91,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   <span className="text-[9px] uppercase tracking-widest text-amber-400 font-mono">
                     Artisan Gastronomy
                   </span>
-                  <h4 className="text-base sm:text-lg font-serif font-medium text-axon-text">
+                  <p className="text-base sm:text-lg font-serif font-medium text-axon-text">
                     Woodfired Flavour &amp; Contemporary Ambiance
-                  </h4>
+                  </p>
                   <p className="text-[10px] text-axon-muted max-w-xs mx-auto line-clamp-1">
                     Authentic recipes, seasonal ingredients, and signature cocktails.
                   </p>
@@ -149,9 +149,9 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                   <div className="inline-flex items-center gap-1 rounded bg-axon-surface px-1.5 py-0.5 text-[8px] font-mono text-axon-dim border border-axon-border">
                     <span>JEE • NEET • FOUNDATION</span>
                   </div>
-                  <h4 className="text-sm sm:text-base font-bold text-axon-text">
+                  <p className="text-sm sm:text-base font-bold text-axon-text">
                     Structured Learning. Proven Results.
-                  </h4>
+                  </p>
                   <p className="text-[10px] text-axon-muted line-clamp-1">
                     Small batch sizes of 25 students, dedicated mentors, and comprehensive mock tests.
                   </p>
