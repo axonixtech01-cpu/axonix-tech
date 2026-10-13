@@ -64,3 +64,28 @@ export function pageMetadata({ path, title, description, ogTitle, ogDescription 
     },
   };
 }
+
+/**
+ * Optional, privacy-friendly analytics. Nothing loads unless a value is set as a
+ * build-time environment variable in your hosting dashboard:
+ *  - NEXT_PUBLIC_UMAMI_WEBSITE_ID  → Umami (page views + button-click events)
+ *  - NEXT_PUBLIC_CF_BEACON_TOKEN   → Cloudflare Web Analytics, only needed when the
+ *    one-click "Enable Web Analytics" option of Cloudflare Pages is not used.
+ * Both tools are cookieless. Buttons carry `data-umami-event="…"` names for click tracking.
+ */
+export const ANALYTICS = {
+  umamiWebsiteId: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ?? '',
+  umamiScriptUrl: process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL || 'https://cloud.umami.is/script.js',
+  cloudflareToken: process.env.NEXT_PUBLIC_CF_BEACON_TOKEN ?? '',
+};
+
+/** Sends a custom analytics event (no-op when Umami is not loaded). Call from client code only. */
+export function trackEvent(name: string): void {
+  if (typeof window === 'undefined') return;
+  const umami = (window as unknown as { umami?: { track?: (event: string) => void } }).umami;
+  try {
+    umami?.track?.(name);
+  } catch {
+    /* analytics must never break the page */
+  }
+}
