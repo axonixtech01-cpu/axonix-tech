@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://axonixtech.vercel.app/sitemap.xml',
+    sitemap: 'https://axonix-tech-gamma.vercel.app/sitemap.xml',
   };
 }
