@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { SectionHeading } from '@/components/SectionHeading';
 import Link from 'next/link';
 import { 
@@ -15,15 +16,15 @@ import {
   MessageSquareCode
 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/about',
   title: 'About — Engineering Philosophy & Standards',
   description:
     'Learn about Axonix Tech: our focus on modern design, responsive Next.js development, honest communication, and performance-first web experiences.',
-  openGraph: {
-    title: 'About Axonix Tech | Engineering Philosophy',
-    description: 'Modern websites. Meaningful digital experiences. YOUR VISION. OUR CODE.',
-  },
-};
+  ogTitle: 'About Axonix Tech | Engineering Philosophy',
+  ogDescription:
+    'Modern websites. Meaningful digital experiences. YOUR VISION. OUR CODE.',
+});
 
 const PILLARS = [
   {
