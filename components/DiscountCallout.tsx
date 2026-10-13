@@ -6,6 +6,8 @@ import { DISCOUNT_CODE, DISCOUNT_MAILTO, INSTAGRAM_DM_URL } from '@/lib/site';
 interface DiscountCalloutProps {
   /** Compact version for narrow layouts such as the /links page. */
   compact?: boolean;
+  /** Heading level that fits the page outline (h3 under a section h2, h2 directly under the h1). */
+  headingLevel?: 'h2' | 'h3';
 }
 
 /**
@@ -13,7 +15,8 @@ interface DiscountCalloutProps {
  * Wording is deliberately "may be available" — any discount is confirmed
  * per project, so nothing here is a guaranteed offer.
  */
-export const DiscountCallout: React.FC<DiscountCalloutProps> = ({ compact = false }) => {
+export const DiscountCallout: React.FC<DiscountCalloutProps> = ({ compact = false, headingLevel = 'h3' }) => {
+  const Heading = headingLevel;
   return (
     <div
       data-reveal
@@ -38,9 +41,9 @@ export const DiscountCallout: React.FC<DiscountCalloutProps> = ({ compact = fals
             Extra discount on request
           </div>
 
-          <h3 className={`font-extrabold tracking-tight text-axon-text ${compact ? 'text-lg' : 'text-2xl sm:text-3xl'}`}>
+          <Heading className={`font-extrabold tracking-tight text-axon-text ${compact ? 'text-lg' : 'text-2xl sm:text-3xl'}`}>
             Want an even better price? <span className="text-amber-300">Just ask.</span>
-          </h3>
+          </Heading>
 
           <p className="text-sm leading-relaxed text-axon-muted">
             These are our standard prices, but <strong className="text-axon-text">further discounts may be available</strong>{' '}
@@ -61,6 +64,7 @@ export const DiscountCallout: React.FC<DiscountCalloutProps> = ({ compact = fals
             href={INSTAGRAM_DM_URL}
             target="_blank"
             rel="noopener noreferrer"
+            data-umami-event="discount-instagram"
             data-ripple
             className="btn-shine flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 via-rose-500 to-amber-500 px-5 py-3 text-sm font-bold text-white shadow-lg transition-opacity hover:opacity-95"
           >
@@ -69,6 +73,7 @@ export const DiscountCallout: React.FC<DiscountCalloutProps> = ({ compact = fals
           </a>
           <a
             href={DISCOUNT_MAILTO}
+            data-umami-event="discount-gmail"
             data-ripple
             className="flex w-full items-center justify-center gap-2 rounded-lg border border-axon-border bg-axon-bg px-5 py-3 text-sm font-semibold text-axon-text transition-colors hover:border-axon-blue/50"
           >
@@ -77,6 +82,7 @@ export const DiscountCallout: React.FC<DiscountCalloutProps> = ({ compact = fals
           </a>
           <Link
             href="/contact?discount=1"
+            data-umami-event="discount-brief"
             className="flex items-center justify-center gap-1.5 pt-1 text-xs font-mono text-axon-dim transition-colors hover:text-axon-blue"
           >
             <Gift className="h-3.5 w-3.5" aria-hidden="true" />
