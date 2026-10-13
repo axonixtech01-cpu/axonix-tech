@@ -33,18 +33,23 @@ export const ProcessSection: React.FC = () => {
   return (
     <section className="relative py-20 bg-axon-bg border-t border-axon-border">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div data-reveal>
         <SectionHeading
           badge="// EXECUTION PROTOCOL"
           title="Engineered for Precision & Speed"
           subtitle="Our structured development lifecycle eliminates ambiguity, ensures rapid delivery, and produces clean, maintainable digital assets."
         />
+        </div>
 
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {STEPS.map((item) => {
+          {STEPS.map((item, index) => {
             const Icon = item.icon;
             return (
               <div
                 key={item.step}
+                data-reveal
+                data-reveal-delay={index}
+                data-spotlight
                 className="relative rounded-2xl border border-axon-border bg-axon-surface/60 p-6 transition-all duration-300 hover:border-axon-blue/40 hover:bg-axon-surface"
               >
                 {/* Step indicator */}
