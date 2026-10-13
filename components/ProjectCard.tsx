@@ -26,11 +26,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   // Determine direct live demo URL if available
   const liveDemoUrl = 
-    project.mockupType === 'coaching' 
-      ? '/demo/coaching' 
-      : project.mockupType === 'restaurant' 
-      ? '/demo/restaurant' 
-      : undefined;
+    project.demoUrl || (
+      project.mockupType === 'coaching' 
+        ? '/demo/coaching' 
+        : project.mockupType === 'restaurant' 
+        ? '/demo/restaurant' 
+        : undefined
+    );
 
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-axon-border bg-axon-surface/90 shadow-lg transition-all duration-300 hover:border-axon-blue/50 hover:shadow-glow-sm">
