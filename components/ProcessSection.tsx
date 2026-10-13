@@ -25,7 +25,7 @@ const STEPS = [
     step: '04',
     icon: Rocket,
     title: 'Audit & Deployment',
-    desc: 'We perform mobile responsiveness tests, Lighthouse performance audits, and deploy to Vercel global edge infrastructure. You receive full code ownership and launch guidance.',
+    desc: 'We perform mobile responsiveness tests, Lighthouse performance audits, and deploy to fast, reliable global hosting. You receive full code ownership and launch guidance.',
   },
 ];
 
