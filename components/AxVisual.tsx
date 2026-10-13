@@ -3,151 +3,100 @@ import React from 'react';
 export const AxVisual: React.FC = () => {
   return (
     <div className="relative mx-auto w-full max-w-xl select-none">
-      {/* Ambient Electric Glow Behind Graphic */}
+      {/* Outer Restrained Ambient Electric Glow */}
       <div 
-        className="absolute -inset-4 rounded-3xl bg-axon-blue/15 blur-2xl pointer-events-none transform-gpu" 
+        className="absolute -inset-4 rounded-3xl bg-axon-blue/20 blur-3xl pointer-events-none transform-gpu" 
         aria-hidden="true" 
       />
 
-      {/* Main High-Tech Terminal Card */}
-      <div className="relative rounded-2xl border border-axon-border bg-axon-surface/90 p-5 sm:p-7 shadow-2xl backdrop-blur-xl transition-all duration-300 hover:border-axon-blue/40">
+      {/* Main Futuristic Command Console Card */}
+      <div className="relative rounded-2xl border border-axon-blue/30 bg-axon-surface/95 p-5 sm:p-7 shadow-[0_10px_50px_rgba(0,0,0,0.8)] backdrop-blur-2xl transition-all duration-300 hover:border-axon-blue/60">
         
+        {/* Subtle Cyber Corner Accents */}
+        <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-axon-blue rounded-tl-lg" />
+        <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-axon-blue rounded-tr-lg" />
+        <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-axon-blue rounded-bl-lg" />
+        <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-axon-blue rounded-br-lg" />
+
         {/* Terminal Header Bar */}
-        <div className="flex items-center justify-between border-b border-axon-border/80 pb-4">
+        <div className="flex items-center justify-between border-b border-axon-border/90 pb-4">
           <div className="flex items-center gap-2">
-            <span className="h-3 w-3 rounded-full bg-rose-500/80" />
-            <span className="h-3 w-3 rounded-full bg-amber-500/80" />
-            <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
-            <span className="ml-2 font-mono text-xs text-axon-dim tracking-wider">
-              AXONIX.SYS // V1.0
+            <span className="h-2.5 w-2.5 rounded-full bg-rose-500/80 shadow-[0_0_8px_rgba(244,63,94,0.6)]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-amber-500/80 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
+            <span className="h-2.5 w-2.5 rounded-full bg-emerald-500/80 shadow-[0_0_8px_rgba(16,185,129,0.6)]" />
+            <span className="ml-2 font-mono text-[11px] text-axon-dim tracking-wider">
+              AXONIX.ENGINE // CORE_NEXUS
             </span>
           </div>
           <div className="flex items-center gap-2 font-mono text-[11px] text-axon-accent">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-axon-blue opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-axon-blue" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-axon-blue shadow-glow-sm" />
             </span>
-            <span>SYSTEM READY</span>
+            <span>SYSTEM ACTIVE</span>
           </div>
         </div>
 
-        {/* Central Geometric AX Vector Artwork */}
-        <div className="relative my-6 flex items-center justify-center py-4">
-          {/* Subtle grid pattern background */}
-          <div className="absolute inset-0 bg-grid-pattern opacity-60" />
+        {/* Central 3D Metallic Emblem & HUD Matrix */}
+        <div className="relative my-6 flex flex-col items-center justify-center py-4">
+          {/* Subtle Grid Backdrop */}
+          <div className="absolute inset-0 bg-grid-pattern opacity-70" />
 
-          <svg
-            viewBox="0 0 420 280"
-            className="w-full max-w-[400px] h-auto drop-shadow-[0_0_20px_rgba(0,180,255,0.25)]"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Defs for gradients & filters */}
-            <defs>
-              <linearGradient id="cyberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00B4FF" />
-                <stop offset="100%" stopColor="#36C5FF" stopOpacity="0.4" />
-              </linearGradient>
-              <linearGradient id="polyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#0D1220" stopOpacity="0.8" />
-                <stop offset="100%" stopColor="#141D30" stopOpacity="0.9" />
-              </linearGradient>
-            </defs>
+          {/* Holographic Radar Concentric Circles */}
+          <div className="absolute w-56 h-56 rounded-full border border-axon-blue/15 animate-pulse" />
+          <div className="absolute w-72 h-72 rounded-full border border-axon-blue/10 border-dashed" />
 
-            {/* Background Circuit Grid Lines */}
-            <path d="M40 70 H130 L160 100 H260 L290 70 H380" stroke="#1A2436" strokeWidth="1.5" strokeDasharray="4 4" />
-            <path d="M40 210 H140 L170 180 H250 L280 210 H380" stroke="#1A2436" strokeWidth="1.5" strokeDasharray="4 4" />
-            <path d="M210 20 V60" stroke="#1A2436" strokeWidth="1.5" />
-            <path d="M210 220 V260" stroke="#1A2436" strokeWidth="1.5" />
+          {/* Central 3D Logo Feature Display */}
+          <div className="relative z-10 flex flex-col items-center">
+            <div className="relative group p-2">
+              {/* Radial Cyan Backlighting matching the Logo */}
+              <div className="absolute -inset-2 rounded-2xl bg-gradient-to-r from-axon-blue/30 via-axon-accent/40 to-axon-blue/30 blur-xl opacity-90 transition-all duration-500 group-hover:opacity-100" />
+              
+              <img
+                src="/logo.png"
+                alt="Axonix Tech 3D Metallic Emblem"
+                className="relative w-44 sm:w-52 h-auto rounded-xl object-contain drop-shadow-[0_15px_30px_rgba(0,180,255,0.4)] border border-axon-blue/40 shadow-2xl transition-transform duration-300 hover:scale-105"
+              />
+            </div>
 
-            {/* Central Hexagon Cyber Core */}
-            <polygon
-              points="210,50 295,95 295,185 210,230 125,185 125,95"
-              fill="url(#polyGrad)"
-              stroke="#1E2D4A"
-              strokeWidth="2"
-            />
-            <polygon
-              points="210,65 275,102 275,178 210,215 145,178 145,102"
-              fill="none"
-              stroke="#00B4FF"
-              strokeWidth="1"
-              strokeDasharray="6 4"
-              opacity="0.6"
-            />
+            {/* Holographic Scanline Line */}
+            <div className="w-48 h-0.5 bg-gradient-to-r from-transparent via-axon-accent to-transparent shadow-glow-sm mt-3 animate-pulse" />
+          </div>
 
-            {/* Prominent AX Brand Symbolism */}
-            {/* 'A' Left Pillar */}
-            <path
-              d="M170 195 L210 85 L250 195"
-              stroke="url(#cyberGrad)"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-            {/* 'A' Bridge */}
-            <line
-              x1="184"
-              y1="155"
-              x2="236"
-              y2="155"
-              stroke="#36C5FF"
-              strokeWidth="3.5"
-              strokeLinecap="round"
-            />
-
-            {/* Intersecting 'X' Diagonal Rays */}
-            <line
-              x1="165"
-              y1="105"
-              x2="255"
-              y2="175"
-              stroke="#00B4FF"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              opacity="0.85"
-            />
-            <line
-              x1="255"
-              y1="105"
-              x2="165"
-              y2="175"
-              stroke="#F5F8FF"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeDasharray="3 3"
-              opacity="0.5"
-            />
-
-            {/* Floating Telemetry Nodes */}
-            <circle cx="210" cy="85" r="4" fill="#F5F8FF" />
-            <circle cx="210" cy="85" r="8" stroke="#00B4FF" strokeWidth="1.5" opacity="0.8" />
-            <circle cx="170" cy="195" r="3.5" fill="#00B4FF" />
-            <circle cx="250" cy="195" r="3.5" fill="#36C5FF" />
-            <circle cx="125" cy="140" r="3" fill="#00B4FF" opacity="0.6" />
-            <circle cx="295" cy="140" r="3" fill="#00B4FF" opacity="0.6" />
-
-            {/* Digital Data Bits */}
-            <text x="70" y="55" fill="#6C7A90" fontSize="10" fontFamily="monospace">01_RESPONSIVE</text>
-            <text x="290" y="55" fill="#36C5FF" fontSize="10" fontFamily="monospace">NEXT.JS // RSC</text>
-            <text x="70" y="235" fill="#00B4FF" fontSize="10" fontFamily="monospace">&lt;CLEAN_CODE&gt;</text>
-            <text x="300" y="235" fill="#6C7A90" fontSize="10" fontFamily="monospace">SEO: 100/100</text>
-          </svg>
+          {/* Surrounding High-Tech Telemetry Badges */}
+          <div className="w-full mt-6 grid grid-cols-2 gap-2 text-[10px] font-mono">
+            <div className="flex items-center justify-between rounded bg-axon-bg/80 px-2.5 py-1.5 border border-axon-border/70">
+              <span className="text-axon-dim">INTERFACE:</span>
+              <span className="text-axon-text font-bold">CYBER_CHISEL</span>
+            </div>
+            <div className="flex items-center justify-between rounded bg-axon-bg/80 px-2.5 py-1.5 border border-axon-border/70">
+              <span className="text-axon-dim">CORE ARCH:</span>
+              <span className="text-axon-blue font-bold">NEXT.JS 14</span>
+            </div>
+            <div className="flex items-center justify-between rounded bg-axon-bg/80 px-2.5 py-1.5 border border-axon-border/70">
+              <span className="text-axon-dim">RENDER SPEED:</span>
+              <span className="text-emerald-400 font-bold">&lt; 0.8s FCP</span>
+            </div>
+            <div className="flex items-center justify-between rounded bg-axon-bg/80 px-2.5 py-1.5 border border-axon-border/70">
+              <span className="text-axon-dim">SECURITY:</span>
+              <span className="text-axon-accent font-bold">EDGE ISOLATED</span>
+            </div>
+          </div>
         </div>
 
         {/* Bottom Metrics Bar */}
         <div className="grid grid-cols-3 gap-2 border-t border-axon-border/80 pt-4 text-center">
-          <div className="rounded-lg bg-axon-bg/60 p-2.5 border border-axon-border/60">
-            <span className="block font-mono text-[10px] text-axon-dim uppercase">Framework</span>
-            <span className="font-mono text-xs font-semibold text-axon-text sm:text-sm">Next.js App</span>
+          <div className="rounded-lg bg-axon-bg/70 p-2.5 border border-axon-border/70">
+            <span className="block font-mono text-[9px] text-axon-dim uppercase">Design Language</span>
+            <span className="font-mono text-xs font-semibold text-axon-text sm:text-sm">Cyber-Metallic</span>
           </div>
-          <div className="rounded-lg bg-axon-bg/60 p-2.5 border border-axon-border/60">
-            <span className="block font-mono text-[10px] text-axon-dim uppercase">Mobile View</span>
-            <span className="font-mono text-xs font-semibold text-axon-blue sm:text-sm">360px Fluid</span>
+          <div className="rounded-lg bg-axon-bg/70 p-2.5 border border-axon-border/70">
+            <span className="block font-mono text-[9px] text-axon-dim uppercase">Target Viewport</span>
+            <span className="font-mono text-xs font-semibold text-axon-blue sm:text-sm">360px – 4K UHD</span>
           </div>
-          <div className="rounded-lg bg-axon-bg/60 p-2.5 border border-axon-border/60">
-            <span className="block font-mono text-[10px] text-axon-dim uppercase">Performance</span>
-            <span className="font-mono text-xs font-semibold text-emerald-400 sm:text-sm">Ultra Fast</span>
+          <div className="rounded-lg bg-axon-bg/70 p-2.5 border border-axon-border/70">
+            <span className="block font-mono text-[9px] text-axon-dim uppercase">Status</span>
+            <span className="font-mono text-xs font-semibold text-emerald-400 sm:text-sm">Production Ready</span>
           </div>
         </div>
 
