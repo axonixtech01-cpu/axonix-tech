@@ -16,6 +16,10 @@ import {
   Instagram
 } from 'lucide-react';
 
+// Total number of services listed in ALL_SERVICES on /services.
+// Update this if services are added to or removed from that page.
+const TOTAL_SERVICE_COUNT = 8;
+
 const FEATURED_SERVICES: ServiceItem[] = [
   {
     id: 'web-design',
@@ -37,7 +41,7 @@ const FEATURED_SERVICES: ServiceItem[] = [
     iconName: 'responsive',
     title: 'Responsive Web Development',
     badge: 'Engineering',
-    shortDesc: 'Lightning-fast, mobile-first code built with Next.js and Tailwind CSS. Fluid across 360px smartphones, tablets, and wide monitors.',
+    shortDesc: 'Performance-focused, mobile-first code built with Next.js and Tailwind CSS. Fluid across 360px smartphones, tablets, and wide monitors.',
     fullDesc: 'Production-ready web development adhering to semantic HTML5 standards and lightweight architecture for maximum speed.',
     deliverables: [
       'Next.js App Router architecture',
@@ -61,6 +65,51 @@ const FEATURED_SERVICES: ServiceItem[] = [
       'Social proof & offering sections'
     ],
     techStack: ['React', 'Semantic HTML5', 'Vercel']
+  },
+  {
+    id: 'redesign',
+    iconName: 'redesign',
+    title: 'Website Redesign',
+    badge: 'Modernization',
+    shortDesc: 'Modernizing outdated, sluggish websites into sleek, responsive digital assets while preserving your existing content and core branding.',
+    fullDesc: 'We rebuild outdated or template-heavy websites with a modern design system, cleaner code and proper mobile responsiveness.',
+    deliverables: [
+      'Audit of current site shortcomings',
+      'Modern visual design overhaul',
+      'Removal of legacy plugin and script bloat',
+      'Mobile responsiveness overhaul'
+    ],
+    techStack: ['Next.js', 'Tailwind CSS', 'Code Migration']
+  },
+  {
+    id: 'ppt-design',
+    iconName: 'presentation',
+    title: 'PPT & Presentation Design',
+    badge: 'New Service',
+    shortDesc: 'Clear, visually compelling presentations that turn complex information into a polished story — for students, educators, startups and businesses.',
+    fullDesc: 'Structured, professional slide design with strong visual hierarchy, readability, consistency and storytelling.',
+    deliverables: [
+      'PowerPoint slide design & formatting',
+      'Academic & educational project decks',
+      'Business proposals & startup pitch decks',
+      'Charts, diagrams & visual storytelling'
+    ],
+    techStack: ['PowerPoint', 'Visual Storytelling', 'Information Design']
+  },
+  {
+    id: 'chatbot-development',
+    iconName: 'chatbot',
+    title: 'Chatbot Development & AI Integration',
+    badge: 'New Service',
+    shortDesc: 'Useful website chatbots that help visitors find information and start conversations with businesses — from rule-based widgets to AI assistants.',
+    fullDesc: 'Website chatbots for FAQs, service information, basic enquiries and lead capture, with optional AI API integration when agreed.',
+    deliverables: [
+      'FAQ & business-information chatbot',
+      'Basic lead-capture conversation flow',
+      'Mobile-friendly chat interface',
+      'AI API integration when required & agreed'
+    ],
+    techStack: ['Chat UI', 'Conversation Design', 'API Integration']
   }
 ];
 
@@ -135,7 +184,7 @@ export default function HomePage() {
 
               {/* Supporting Text */}
               <p className="max-w-2xl text-base sm:text-lg text-axon-muted leading-relaxed mx-auto lg:mx-0">
-                Axonix Tech designs and engineers modern, high-performance responsive websites for businesses, coaching centres, restaurants, and growing brands. Fast loading, engineered for mobile screens, and built to convert attention into meaningful client enquiries.
+                Axonix Tech designs and engineers modern responsive websites, professional presentations, and website chatbots for businesses, coaching centres, restaurants, students, and growing brands. Performance-focused, engineered for mobile screens, and built to turn attention into meaningful client enquiries.
               </p>
 
               {/* CTA Group */}
@@ -164,7 +213,7 @@ export default function HomePage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Zap className="h-4 w-4 text-axon-accent shrink-0" />
-                  <span className="text-xs text-axon-muted">Sub-1.5s Fast Load</span>
+                  <span className="text-xs text-axon-muted">Performance-Focused</span>
                 </div>
                 <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
                   <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0" />
@@ -191,18 +240,18 @@ export default function HomePage() {
               align="left"
               badge="// AGENCY CAPABILITIES"
               title="Targeted Solutions for Growing Businesses"
-              subtitle="From local institutes to modern dining spots and tech ventures, we build purposeful web platforms tailored to your operational needs."
+              subtitle="From websites for local institutes, dining spots and tech ventures to polished presentation decks and helpful website chatbots — purposeful digital work tailored to your needs."
             />
             <Link
               href="/services"
               className="inline-flex items-center gap-2 text-sm font-mono font-semibold text-axon-blue hover:text-axon-accent transition-colors self-start md:self-end"
             >
-              <span>View All 6 Services</span>
+              <span>View All {TOTAL_SERVICE_COUNT} Services</span>
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {FEATURED_SERVICES.map((service) => (
               <ServiceCard key={service.id} service={service} />
             ))}
@@ -259,7 +308,7 @@ export default function HomePage() {
           </h2>
 
           <p className="max-w-2xl mx-auto text-base text-axon-muted leading-relaxed">
-            Whether you run a coaching institute in need of students, a restaurant looking for table bookings, or a startup launching a new product—we engineer the web experience your business deserves.
+            Whether you run a coaching institute in need of students, a restaurant looking for table bookings, or a startup preparing a pitch deck—we design the digital experience your business deserves.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
