@@ -20,7 +20,7 @@ const config: Config = {
           accent: '#36C5FF',
           text: '#F5F8FF',
           muted: '#A6B2C5',
-          dim: '#6C7A90',
+          dim: '#7886A0', // AA contrast (>=4.5:1) on bg, surface and card
         },
       },
       fontFamily: {
