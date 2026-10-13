@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
+import { InstagramFloatingCTA } from '@/components/InstagramFloatingCTA';
 
 export const metadata: Metadata = {
   title: {
@@ -31,17 +32,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://axonixtech.vercel.app',
+    url: 'https://axonix-tech-gamma.vercel.app',
     title: 'Axonix Tech — Premium Web Design & Digital Experiences',
-    description: 'Modern websites. Meaningful digital experiences. YOUR VISION. OUR CODE.',
+    description: 'Modern websites. Meaningful digital experiences. YOUR VISION. OUR CODE. DM @axo_nixtech',
     siteName: 'Axonix Tech',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Axonix Tech — Premium Web Design & Digital Experiences',
-    description: 'Modern websites. Meaningful digital experiences. YOUR VISION. OUR CODE.',
+    description: 'Modern websites. Meaningful digital experiences. YOUR VISION. OUR CODE. DM @axo_nixtech',
   },
-  metadataBase: new URL('https://axonixtech.vercel.app'),
+  metadataBase: new URL('https://axonix-tech-gamma.vercel.app'),
 };
 
 export const viewport: Viewport = {
@@ -63,6 +64,8 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
+          {/* Floating 1-Tap Instagram DM Button */}
+          <InstagramFloatingCTA />
         </div>
       </body>
     </html>
