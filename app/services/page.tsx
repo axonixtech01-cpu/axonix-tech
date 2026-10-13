@@ -5,6 +5,8 @@ import { pageMetadata } from '@/lib/site';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCard, ServiceItem } from '@/components/ServiceCard';
 import { PricingSection } from '@/components/PricingSection';
+import { SamplesStrip } from '@/components/SamplesStrip';
+import { FAQSection } from '@/components/FAQSection';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Shield, Terminal, Zap, Code2 } from 'lucide-react';
 
@@ -45,7 +47,7 @@ const ALL_SERVICES: ServiceItem[] = [
       'Clean Next.js App Router codebase',
       'Tailwind CSS mobile-first responsive styling',
       'Fluid layouts tested across 360px–1920px viewports',
-      'Production build optimized for Vercel edge delivery'
+      'Production build optimized for fast global delivery'
     ],
     techStack: ['Next.js', 'React', 'Tailwind CSS', 'TypeScript']
   },
@@ -107,7 +109,7 @@ const ALL_SERVICES: ServiceItem[] = [
       'Domain and DNS configuration assistance',
       'Direct contact integration with email and WhatsApp'
     ],
-    techStack: ['Next.js', 'SEO Metadata', 'Google Maps Embeds', 'Vercel']
+    techStack: ['Next.js', 'SEO Metadata', 'Google Maps Embeds', 'Edge Hosting']
   },
   {
     id: 'ppt-design',
@@ -173,6 +175,9 @@ export default function ServicesPage() {
           ))}
         </div>
 
+        {/* Presentation samples + chatbot demo */}
+        <SamplesStrip className="mt-12" />
+
         {/* Realistic Technical Standards Banner */}
         <div data-reveal className="mt-20 rounded-2xl border border-axon-border bg-axon-surface/80 p-8 sm:p-10 backdrop-blur-sm">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
@@ -228,6 +233,9 @@ export default function ServicesPage() {
 
     {/* Pricing packages + discount call-to-action */}
     <PricingSection />
+
+    {/* Frequently asked questions */}
+    <FAQSection />
     </>
   );
 }
