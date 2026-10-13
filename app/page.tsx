@@ -10,6 +10,8 @@ import { PricingSection } from '@/components/PricingSection';
 import { NeuralBackground } from '@/components/NeuralBackground';
 import { RotatingWords } from '@/components/RotatingWords';
 import { ServicesMarquee } from '@/components/ServicesMarquee';
+import { SamplesStrip } from '@/components/SamplesStrip';
+import { FAQSection } from '@/components/FAQSection';
 import { 
   ArrowRight, 
   Sparkles, 
@@ -75,7 +77,7 @@ const FEATURED_SERVICES: ServiceItem[] = [
       'Fast mobile viewport rendering',
       'Social proof & offering sections'
     ],
-    techStack: ['React', 'Semantic HTML5', 'Vercel']
+    techStack: ['React', 'Semantic HTML5', 'Edge Hosting']
   },
   {
     id: 'redesign',
@@ -214,6 +216,7 @@ export default function HomePage() {
               <div className="hero-enter hero-d3 flex justify-center lg:justify-start">
                 <a
                   href="#pricing"
+                  data-umami-event="hero-price-pill"
                   className="group inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/[0.08] px-4 py-1.5 text-xs sm:text-sm text-axon-muted transition-colors hover:border-amber-400/60"
                 >
                   <Tag className="h-3.5 w-3.5 text-amber-300" aria-hidden="true" />
@@ -230,6 +233,7 @@ export default function HomePage() {
                 <Link
                   href="/contact"
                   data-ripple
+                  data-umami-event="hero-start-project"
                   className="btn-shine w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-axon-blue px-7 py-3.5 text-base font-semibold text-axon-bg shadow-glow-sm transition-all duration-200 hover:bg-axon-accent hover:shadow-glow-md active:scale-98"
                 >
                   <span>Start a Project</span>
@@ -353,6 +357,9 @@ export default function HomePage() {
             ← Swipe to explore the live demos →
           </p>
 
+          {/* Presentation samples + chatbot demo */}
+          <SamplesStrip className="mt-8" />
+
           <div className="mt-8 rounded-xl border border-axon-border bg-axon-surface/50 p-4 text-center text-xs text-axon-muted font-mono">
             <span>Notice: Concept projects are original design demonstrations engineered by Axonix Tech to showcase domain-specific capabilities.</span>
           </div>
@@ -365,7 +372,10 @@ export default function HomePage() {
       {/* 5. PROCESS SECTION */}
       <ProcessSection />
 
-      {/* 6. FINAL CONTACT CTA SECTION */}
+      {/* 6. FAQ */}
+      <FAQSection limit={6} />
+
+      {/* 7. FINAL CONTACT CTA SECTION */}
       <section className="relative py-20 bg-axon-surface border-t border-axon-border overflow-hidden">
         {/* Subtle radial glow */}
         <div className="absolute inset-0 radial-glow pointer-events-none" />
