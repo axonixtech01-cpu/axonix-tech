@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: '%s | Axonix Tech',
   },
   description:
-    'Axonix Tech designs and engineers modern, high-performance responsive websites, landing pages, and digital experiences for ambitious businesses, institutions, and growing brands.',
+    'Axonix Tech designs and builds modern responsive websites and landing pages, professional PPT and presentation designs, and website chatbots with optional AI integration for businesses, institutions, students, and growing brands.',
   keywords: [
     'Axonix Tech',
     'web design agency',
@@ -20,6 +20,10 @@ export const metadata: Metadata = {
     'restaurant website design',
     'UI UX design',
     'Next.js web development',
+    'PPT presentation design',
+    'pitch deck design',
+    'chatbot development',
+    'AI chatbot integration',
   ],
   authors: [{ name: 'Axonix Tech' }],
   creator: 'Axonix Tech',
