@@ -1,20 +1,21 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/site';
 import { SectionHeading } from '@/components/SectionHeading';
 import { ServiceCard, ServiceItem } from '@/components/ServiceCard';
+import { PricingSection } from '@/components/PricingSection';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Shield, Terminal, Zap, Code2 } from 'lucide-react';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: '/services',
   title: 'Services — Websites, Presentations & Chatbots',
   description:
     'Explore Axonix Tech services: custom website design and responsive Next.js development, landing pages, redesigns, UI/UX, PPT and presentation design, and website chatbot development with optional AI integration.',
-  openGraph: {
-    title: 'Services | Axonix Tech',
-    description:
-      'Website design and development, PPT and presentation design, and chatbot development for growing brands, startups, students and businesses.',
-  },
-};
+  ogTitle: 'Services | Axonix Tech',
+  ogDescription:
+    'Website design and development, PPT and presentation design, and chatbot development for growing brands, startups, students and businesses.',
+});
 
 const ALL_SERVICES: ServiceItem[] = [
   {
@@ -147,6 +148,7 @@ const ALL_SERVICES: ServiceItem[] = [
 
 export default function ServicesPage() {
   return (
+    <>
     <div className="flex flex-col py-12 sm:py-16 lg:py-20 tech-grid-bg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
@@ -165,13 +167,13 @@ export default function ServicesPage() {
 
         {/* Services Grid (8 services) */}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {ALL_SERVICES.map((service) => (
-            <ServiceCard key={service.id} service={service} detailed={true} />
+          {ALL_SERVICES.map((service, i) => (
+            <ServiceCard key={service.id} service={service} detailed={true} revealDelay={i % 3} />
           ))}
         </div>
 
         {/* Realistic Technical Standards Banner */}
-        <div className="mt-20 rounded-2xl border border-axon-border bg-axon-surface/80 p-8 sm:p-10 backdrop-blur-sm">
+        <div data-reveal className="mt-20 rounded-2xl border border-axon-border bg-axon-surface/80 p-8 sm:p-10 backdrop-blur-sm">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 font-mono text-xs text-axon-blue">
@@ -222,5 +224,9 @@ export default function ServicesPage() {
 
       </div>
     </div>
+
+    {/* Pricing packages + discount call-to-action */}
+    <PricingSection />
+    </>
   );
 }
