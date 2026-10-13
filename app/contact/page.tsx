@@ -15,10 +15,10 @@ import {
 export const metadata: Metadata = {
   title: 'Contact — Initiate Your Project Inquiry',
   description:
-    'Get in touch with Axonix Tech to discuss your new website, redesign, or landing page. Email: Axonix.tech01@gmail.com | Instagram: @axo_nixtech',
+    'Get in touch with Axonix Tech to discuss a new website, redesign, landing page, presentation design, or website chatbot. Email: Axonix.tech01@gmail.com | Instagram: @axo_nixtech',
   openGraph: {
     title: 'Contact Axonix Tech | Project Inquiries',
-    description: 'Start your website project with Axonix Tech. Direct communication, transparent pricing.',
+    description: 'Start your website, presentation, or chatbot project with Axonix Tech. Direct communication, transparent pricing.',
   },
 };
 
@@ -139,7 +139,7 @@ export default function ContactPage() {
                 </li>
                 <li className="flex items-start gap-2.5">
                   <CheckCircle2 className="h-4 w-4 text-axon-blue shrink-0 mt-0.5" />
-                  <span>Once agreed, we provide wireframe previews before writing code.</span>
+                  <span>Once agreed, we share wireframes, slide layouts, or chatbot conversation flows for review before the final build.</span>
                 </li>
               </ul>
             </div>
