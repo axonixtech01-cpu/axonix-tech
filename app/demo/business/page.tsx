@@ -122,7 +122,7 @@ export default function BusinessDemoPage() {
       {ownerMode && (
         <div className="bg-amber-500/15 border-b border-amber-500/40 p-3 font-sans text-xs text-amber-200">
           <div className="mx-auto max-w-7xl">
-            <strong>Clinic / Small Business Insight:</strong> Local clients look for two things: doctor qualifications and immediate appointment availability. This clean, mobile-first design loads in 0.4s and eliminates reception phone bottlenecks.
+            <strong>Clinic / Small Business Insight:</strong> Local clients look for two things: doctor qualifications and immediate appointment availability. This clean, mobile-first design is built to load fast on mobile and reduces reception phone bottlenecks.
           </div>
         </div>
       )}
@@ -253,6 +253,9 @@ export default function BusinessDemoPage() {
                     </h4>
                     <p className="text-xs text-zinc-400">
                       Our clinic reception will WhatsApp confirmation for <strong className="text-teal-400">{bookingForm.slot}</strong> to {bookingForm.phone}.
+                    </p>
+                    <p className="mt-2 rounded-md border border-amber-400/30 bg-amber-400/10 px-2.5 py-1.5 text-[11px] font-mono text-amber-300">
+                      Demo only — no details were sent or stored. On a real client site, this goes straight to the business&apos;s WhatsApp or email.
                     </p>
                   </div>
                 )}
