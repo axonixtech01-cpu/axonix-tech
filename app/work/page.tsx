@@ -89,7 +89,7 @@ export default function WorkPage() {
           <AlertCircle className="h-5 w-5 text-axon-blue shrink-0 mt-0.5" />
           <div className="text-xs sm:text-sm text-axon-muted space-y-1">
             <strong className="text-axon-text font-semibold">Honest Representation Policy:</strong>{' '}
-            The items displayed below are <span className="text-axon-accent font-medium">Concept &amp; Demo Projects</span> designed and coded in-house by Axonix Tech. We do not invent fictitious clients, fake reviews, or exaggerated commercial metrics. These examples reflect the exact design and code standard we deliver for real clients.
+            The items displayed below are <span className="text-axon-accent font-medium">Concept &amp; Demo Projects</span> designed and coded in-house by Axonix Tech. We do not invent fictitious clients, fake reviews, or exaggerated commercial metrics. Any metrics shown inside these mockups are illustrative placeholders, not real business results. These examples reflect the design and code standard we aim to deliver on client projects.
           </div>
         </div>
 
