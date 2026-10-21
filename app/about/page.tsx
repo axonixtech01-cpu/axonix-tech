@@ -60,15 +60,15 @@ const STACK_ITEMS = [
 
 export default function AboutPage() {
   return (
-    <div className="flex flex-col py-12 sm:py-16 lg:py-20 tech-grid-bg">
+    <div className="spatial-page-shell flex flex-col py-12 sm:py-16 lg:py-20 tech-grid-bg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="page-intro text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 rounded-full border border-axon-blue/30 bg-axon-blue/10 px-3.5 py-1 text-xs font-mono text-axon-accent">
             <span>ABOUT AXONIX TECH</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-axon-text">
+          <h1 className="page-title">
             Modern Websites. <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-axon-text via-axon-blue to-axon-accent">
               Meaningful Digital Experiences.
@@ -80,7 +80,7 @@ export default function AboutPage() {
         </div>
 
         {/* Agency Mission Statement Card */}
-        <div className="relative overflow-hidden rounded-2xl border border-axon-border bg-axon-surface/80 p-8 sm:p-12 mb-16 shadow-xl backdrop-blur-md">
+        <div data-spotlight data-tilt className="relative overflow-hidden rounded-2xl border border-axon-border bg-axon-surface/80 p-8 sm:p-12 mb-16 shadow-xl backdrop-blur-md">
           <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
             <span className="font-mono text-8xl font-black text-axon-blue">AX</span>
           </div>
@@ -115,7 +115,9 @@ export default function AboutPage() {
               return (
                 <div
                   key={i}
-                  className="rounded-2xl border border-axon-border bg-axon-surface/60 p-6 flex flex-col justify-between transition-all duration-300 hover:border-axon-blue/40 hover:bg-axon-surface"
+                  data-spotlight
+                  data-tilt
+                  className="relative rounded-2xl border border-axon-border bg-axon-surface/60 p-6 flex flex-col justify-between transition-all duration-300 hover:border-axon-blue/40 hover:bg-axon-surface"
                 >
                   <div>
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-axon-bg border border-axon-border text-axon-blue mb-4">
@@ -135,7 +137,7 @@ export default function AboutPage() {
         </div>
 
         {/* Technology Foundation */}
-        <div className="rounded-2xl border border-axon-border bg-axon-surface/70 p-8 sm:p-10 mb-16">
+        <div data-spotlight data-tilt className="relative rounded-2xl border border-axon-border bg-axon-surface/70 p-8 sm:p-10 mb-16">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
             <div>
               <span className="font-mono text-xs font-semibold text-axon-blue uppercase tracking-widest">
@@ -154,7 +156,7 @@ export default function AboutPage() {
             {STACK_ITEMS.map((item, idx) => (
               <div
                 key={idx}
-                className="rounded-xl border border-axon-border bg-axon-bg/80 p-3.5 text-center transition-colors hover:border-axon-blue/40"
+                data-spotlight data-tilt className="relative rounded-xl border border-axon-border bg-axon-bg/80 p-3.5 text-center transition-colors hover:border-axon-blue/40"
               >
                 <span className="block font-mono text-xs font-bold text-axon-text">
                   {item.name}
