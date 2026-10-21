@@ -10,17 +10,17 @@ const config: Config = {
     extend: {
       colors: {
         axon: {
-          bg: '#080B12',
-          surface: '#0D1220',
-          card: '#0F1626',
-          cardHover: '#141D30',
-          border: '#1A2436',
-          borderLight: '#26354D',
-          blue: '#00B4FF',
-          accent: '#36C5FF',
-          text: '#F5F8FF',
-          muted: '#A6B2C5',
-          dim: '#7886A0', // AA contrast (>=4.5:1) on bg, surface and card
+          bg: '#070A12',
+          surface: '#0B1220',
+          card: '#10192A',
+          cardHover: '#152136',
+          border: '#1B2940',
+          borderLight: '#2A3B56',
+          blue: '#52D8F0',
+          accent: '#B1F4F7',
+          text: '#F3F6FA',
+          muted: '#A8B4C4',
+          dim: '#8492A7',
         },
       },
       fontFamily: {
@@ -28,13 +28,13 @@ const config: Config = {
         mono: ['var(--font-jetbrains-mono)', 'monospace'],
       },
       backgroundImage: {
-        'grid-pattern': "radial-gradient(rgba(0, 180, 255, 0.08) 1px, transparent 1px)",
-        'cyber-gradient': "linear-gradient(135deg, rgba(0, 180, 255, 0.12) 0%, rgba(13, 18, 32, 0.8) 100%)",
+        'grid-pattern': "radial-gradient(rgba(123, 222, 235, 0.08) 1px, transparent 1px)",
+        'cyber-gradient': "linear-gradient(135deg, rgba(82, 216, 240, 0.12) 0%, rgba(11, 18, 32, 0.82) 100%)",
       },
       boxShadow: {
-        'glow-sm': '0 0 15px -3px rgba(0, 180, 255, 0.25)',
-        'glow-md': '0 0 25px -4px rgba(0, 180, 255, 0.35)',
-        'glow-lg': '0 0 40px -6px rgba(0, 180, 255, 0.45)',
+        'glow-sm': '0 0 15px -3px rgba(82, 216, 240, 0.20)',
+        'glow-md': '0 0 25px -4px rgba(82, 216, 240, 0.28)',
+        'glow-lg': '0 0 40px -6px rgba(82, 216, 240, 0.36)',
       },
       animation: {
         'pulse-subtle': 'pulseSubtle 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
