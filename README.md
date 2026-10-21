@@ -203,7 +203,7 @@ Keep interactive motion subtle, test at narrow mobile widths, and preserve the r
 
 - **Email:** [Axonix.tech01@gmail.com](mailto:Axonix.tech01@gmail.com)
 - **Instagram:** [@axo_nixtech](https://www.instagram.com/axo_nixtech/)
-- **Studio:** Jaipur, Rajasthan, India
+- **Studio:** US, Germany, India
 
 <div align="center">
 
