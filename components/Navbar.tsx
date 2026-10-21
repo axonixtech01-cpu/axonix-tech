@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { BrandLogo } from './BrandLogo';
@@ -17,164 +17,193 @@ const NAV_ITEMS = [
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
 
-  // Close mobile menu on route change
+  // Close the mobile side drawer on route changes.
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
-  // Lock body scroll when mobile menu is open
+  // Lock page scrolling while the mobile drawer is open.
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
   }, [isOpen]);
 
-  // Handle escape key
+  // Keep Escape and keyboard focus inside the open navigation drawer.
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isOpen) {
+    if (!isOpen) return;
+
+    const getFocusables = () =>
+      Array.from(
+        drawerRef.current?.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        ) ?? []
+      );
+
+    getFocusables()[0]?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
         setIsOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const focusables = getFocusables();
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
+
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
+  const closeMenu = () => setIsOpen(false);
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/[0.06] bg-[#070A12]/80 backdrop-blur-2xl transition-colors duration-200">
+    <header className="site-navbar sticky top-0 z-50 w-full border-b border-white/[0.06] bg-[#070A12]/80 backdrop-blur-2xl transition-colors duration-200">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Brand Mark */}
         <BrandLogo size="md" />
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1" aria-label="Main Navigation">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={isActive ? 'page' : undefined}
                 className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 lg:px-4 ${
                   isActive
                     ? 'bg-white/[0.055] text-axon-text font-semibold shadow-[inset_0_1px_rgba(255,255,255,0.05)]'
-                    : 'text-axon-muted hover:text-axon-text hover:bg-white/[0.035]'
+                    : 'text-axon-muted hover:bg-white/[0.035] hover:text-axon-text'
                 }`}
               >
                 {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-3 right-3 lg:left-4 lg:right-4 h-0.5 bg-axon-blue shadow-glow-sm" />
-                )}
+                {isActive && <span className="navbar-active-dot" aria-hidden="true" />}
               </Link>
             );
           })}
         </nav>
 
-        {/* Desktop CTA */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden items-center gap-3 md:flex">
           <a
             href="https://ig.me/m/axo_nixtech"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg border border-purple-500/40 bg-gradient-to-r from-purple-950/40 to-axon-bg px-3.5 py-2 text-xs font-bold text-white transition-all duration-200 hover:border-purple-400 active:scale-95"
+            className="inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/[0.025] px-3.5 py-2 text-xs font-semibold text-white transition-all duration-200 hover:border-rose-300/35 hover:bg-rose-300/[0.06]"
           >
-            <Instagram className="h-4 w-4 text-rose-400" />
+            <Instagram className="h-4 w-4 text-rose-300" />
             <span>DM Us</span>
           </a>
 
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-lg bg-axon-blue px-4 py-2 text-sm font-semibold text-axon-bg shadow-glow-sm transition-all duration-200 hover:bg-axon-accent hover:shadow-glow-md active:scale-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-axon-blue"
+            className="navbar-project-cta inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-200"
           >
             <span>Start a Project</span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        {/* Mobile Hamburger Button */}
         <button
+          ref={menuButtonRef}
           type="button"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsOpen((open) => !open)}
           aria-expanded={isOpen}
+          aria-controls="mobile-navigation-drawer"
           aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          className="flex h-11 w-11 items-center justify-center rounded-lg border border-axon-border bg-axon-surface text-axon-text transition-colors duration-200 hover:border-axon-blue/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-axon-blue md:hidden"
+          className="mobile-menu-toggle flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.035] text-axon-text transition-colors duration-200 hover:border-axon-blue/45 md:hidden"
         >
-          {isOpen ? <X className="h-6 w-6 text-axon-accent" /> : <Menu className="h-6 w-6" />}
+          {isOpen ? <X className="h-5 w-5 text-axon-accent" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
-      {/* Mobile Menu Backdrop & Drawer — 100% Solid Background (Zero Transparency) */}
       {isOpen && (
         <div
-          style={{ backgroundColor: '#070A12' }}
-          className="fixed inset-x-0 top-16 bottom-0 z-[9999] md:hidden flex flex-col justify-between overflow-y-auto border-t border-axon-border bg-[#080B12] px-6 py-6"
+          className="mobile-drawer-backdrop fixed inset-0 z-[60] md:hidden"
+          onClick={closeMenu}
+          role="presentation"
         >
-          {/* Navigation Links */}
-          <nav className="flex flex-col gap-2.5" aria-label="Mobile Navigation">
-            <div className="text-[11px] font-mono tracking-widest uppercase text-axon-accent px-3 py-1 flex items-center justify-between border-b border-axon-border/60 pb-2">
-              <span>MENU DIRECTORY</span>
-              <span className="text-[10px] text-axon-dim font-mono">AXONIX // V1.0</span>
+          <aside
+            ref={drawerRef}
+            id="mobile-navigation-drawer"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Axonix Tech navigation"
+            className="mobile-drawer-panel"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="mobile-drawer-header">
+              <div className="mobile-drawer-brand">
+                <BrandLogo size="sm" />
+                <span className="mobile-drawer-index">MENU <i>/</i> 05</span>
+              </div>
+              <button
+                type="button"
+                onClick={closeMenu}
+                aria-label="Close navigation menu"
+                className="mobile-drawer-close"
+              >
+                <X className="h-5 w-5" />
+              </button>
             </div>
 
-            {NAV_ITEMS.map((item) => {
-              const isActive = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3.5 text-base rounded-xl border transition-all duration-150 ${
-                    isActive
-                      ? 'border-axon-blue bg-axon-surface text-axon-blue font-bold shadow-glow-sm'
-                      : 'border-axon-border/60 bg-axon-surface/60 text-axon-text hover:border-axon-blue/50 hover:bg-axon-surface'
-                  }`}
-                >
-                  <span className="font-semibold text-lg">{item.label}</span>
-                  {isActive ? (
-                    <span className="h-2.5 w-2.5 rounded-full bg-axon-blue shadow-glow-sm" />
-                  ) : (
-                    <ArrowRight className="h-4 w-4 text-axon-dim" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
+            <nav className="mobile-drawer-nav" aria-label="Mobile navigation">
+              <p className="mobile-drawer-label">Navigate</p>
+              {NAV_ITEMS.map((item, index) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={closeMenu}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`mobile-drawer-link ${isActive ? 'is-active' : ''}`}
+                  >
+                    <span className="mobile-drawer-number">0{index + 1}</span>
+                    <span className="mobile-drawer-link-label">{item.label}</span>
+                    <ArrowRight className="mobile-drawer-arrow h-4 w-4" />
+                  </Link>
+                );
+              })}
+            </nav>
 
-          {/* Bottom Action Controls in Mobile Menu */}
-          <div className="flex flex-col gap-3 pt-6 mt-6 border-t border-axon-border/80">
-            {/* Primary Instagram DM Button */}
-            <a
-              href="https://ig.me/m/axo_nixtech"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsOpen(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 via-rose-500 to-amber-500 py-3.5 text-center text-sm font-bold text-white shadow-lg active:scale-98"
-            >
-              <Instagram className="h-5 w-5" />
-              <span>DM on Instagram (@axo_nixtech)</span>
-              <Send className="h-4 w-4" />
-            </a>
-
-            {/* Start a project page link */}
-            <Link
-              href="/contact"
-              onClick={() => setIsOpen(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-axon-blue py-3.5 text-center text-sm font-semibold text-axon-bg shadow-glow-sm transition-all duration-200 active:scale-98"
-            >
-              <span>Submit Project Brief</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-
-            <div className="flex items-center justify-between pt-2 px-1 text-xs text-axon-dim font-mono">
-              <span>EMAIL: Axonix.tech01@gmail.com</span>
-              <span className="text-emerald-400">● 24h Response</span>
+            <div className="mobile-drawer-footer">
+              <a
+                href="https://ig.me/m/axo_nixtech"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className="mobile-drawer-social"
+              >
+                <Instagram className="h-4 w-4" />
+                <span>DM on Instagram</span>
+                <Send className="ml-auto h-3.5 w-3.5" />
+              </a>
+              <Link href="/contact" onClick={closeMenu} className="mobile-drawer-submit">
+                <span>Submit Project Brief</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <div className="mobile-drawer-contact">
+                <span>Axonix.tech01@gmail.com</span>
+                <span><i /> Responds within 24 hours</span>
+              </div>
             </div>
-          </div>
+          </aside>
         </div>
       )}
     </header>

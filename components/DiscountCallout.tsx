@@ -21,6 +21,7 @@ export const DiscountCallout: React.FC<DiscountCalloutProps> = ({ compact = fals
     <div
       data-reveal
       data-spotlight
+      data-tilt
       className={`relative overflow-hidden rounded-2xl border border-amber-400/35 bg-gradient-to-br from-amber-500/[0.12] via-axon-surface to-axon-surface ${
         compact ? 'p-5 text-left' : 'p-6 sm:p-8'
       }`}

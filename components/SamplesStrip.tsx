@@ -28,6 +28,7 @@ export const SamplesStrip: React.FC<{ className?: string }> = ({ className = '' 
           key={href}
           href={href}
           data-spotlight
+          data-tilt
           data-ripple
           data-umami-event={event}
           className="group relative flex items-center gap-4 rounded-2xl border border-axon-border bg-axon-surface/70 p-4 sm:p-5 transition-colors hover:border-axon-blue/50"

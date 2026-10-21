@@ -83,9 +83,11 @@ export const PricingSection: React.FC = () => {
             <div
               key={tier.name}
               data-spotlight
-              className={`relative flex w-[86%] max-w-sm shrink-0 snap-center flex-col justify-between rounded-2xl border p-6 sm:w-[60%] sm:p-8 lg:w-auto lg:max-w-none ${
+              data-tilt
+              data-popular={tier.popular ? 'true' : undefined}
+              className={`relative flex w-[86% max-w-sm shrink-0 snap-center flex-col justify-between rounded-2xl border p-6 sm:w-[60%] sm:p-8 lg:w-auto lg:max-w-none ${
                 tier.popular
-                  ? 'order-first border-axon-blue bg-axon-surface shadow-[0_0_35px_rgba(0,180,255,0.2)] lg:order-none lg:-translate-y-2'
+                  ? 'order-first border-axon-blue bg-axon-surface shadow-[0_0_35px_rgba(0,180,255,0.2)] lg:order-none'
                   : 'border-axon-border bg-axon-surface/60 hover:border-axon-blue/50'
               }`}
             >

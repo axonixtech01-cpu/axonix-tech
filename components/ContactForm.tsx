@@ -177,7 +177,7 @@ Target: @axo_nixtech / Axonix.tech01@gmail.com`;
   };
 
   return (
-    <div className="rounded-2xl border border-axon-border bg-axon-surface/90 p-5 sm:p-8 shadow-xl">
+    <div data-spotlight data-tilt className="relative rounded-2xl border border-axon-border bg-axon-surface/90 p-5 sm:p-8 shadow-xl">
       <div className="border-b border-axon-border pb-5 mb-6">
         <div className="flex items-center justify-between">
           <h3 className="text-xl font-bold text-axon-text sm:text-2xl">

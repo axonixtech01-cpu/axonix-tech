@@ -41,7 +41,7 @@ export const InstagramFloatingCTA: React.FC = () => {
       }`}
     >
       {!minimized ? (
-        <div className="relative group flex items-center gap-2 rounded-full border border-axon-blue/40 bg-axon-surface/95 p-1.5 pr-4 shadow-[0_8px_30px_rgba(0,180,255,0.3)] backdrop-blur-xl transition-all duration-300 hover:border-axon-blue hover:shadow-glow-md">
+        <div data-spotlight data-tilt className="relative group flex items-center gap-2 rounded-full border border-axon-blue/40 bg-axon-surface/95 p-1.5 pr-4 shadow-[0_8px_30px_rgba(0,180,255,0.3)] backdrop-blur-xl transition-all duration-300 hover:border-axon-blue hover:shadow-glow-md">
           
           {/* Pulsing indicator node */}
           <span className="absolute -top-1 -right-1 flex h-3 w-3">
@@ -86,7 +86,7 @@ export const InstagramFloatingCTA: React.FC = () => {
           type="button"
           onClick={() => setMinimized(false)}
           aria-label="Open Instagram chat button"
-          className="flex h-12 w-12 items-center justify-center rounded-full border border-axon-blue/50 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white shadow-[0_8px_25px_rgba(0,180,255,0.4)] transition-transform duration-200 hover:scale-105 active:scale-95"
+          data-spotlight data-tilt className="flex h-12 w-12 items-center justify-center rounded-full border border-axon-blue/50 bg-gradient-to-tr from-amber-500 via-rose-500 to-purple-600 text-white shadow-[0_8px_25px_rgba(0,180,255,0.4)] transition-transform duration-200 hover:scale-105 active:scale-95"
         >
           <Instagram className="h-6 w-6" />
         </button>

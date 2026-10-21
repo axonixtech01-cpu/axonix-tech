@@ -50,6 +50,7 @@ export const ProcessSection: React.FC = () => {
                 data-reveal
                 data-reveal-delay={index}
                 data-spotlight
+                data-tilt
                 className="relative rounded-2xl border border-axon-border bg-axon-surface/60 p-6 transition-all duration-300 hover:border-axon-blue/40 hover:bg-axon-surface"
               >
                 {/* Step indicator */}
