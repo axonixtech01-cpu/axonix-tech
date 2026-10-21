@@ -7,20 +7,16 @@ import { ServiceCard, ServiceItem } from '@/components/ServiceCard';
 import { ProjectCard, ProjectData } from '@/components/ProjectCard';
 import { ProcessSection } from '@/components/ProcessSection';
 import { PricingSection } from '@/components/PricingSection';
-import { NeuralBackground } from '@/components/NeuralBackground';
 import { RotatingWords } from '@/components/RotatingWords';
 import { ServicesMarquee } from '@/components/ServicesMarquee';
 import { SamplesStrip } from '@/components/SamplesStrip';
 import { FAQSection } from '@/components/FAQSection';
 import { 
   ArrowRight, 
-  Sparkles, 
-  CheckCircle, 
   ShieldCheck, 
   Smartphone, 
   Zap,
   Mail,
-  Instagram,
   Tag
 } from 'lucide-react';
 
@@ -166,115 +162,87 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       
-      {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden pt-12 pb-20 sm:pt-20 sm:pb-28 lg:pt-24 lg:pb-32 tech-grid-bg">
-        {/* Ambient Top Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 radial-glow pointer-events-none" />
-
-        {/* Interactive axon / neural network background */}
-        <NeuralBackground className="absolute inset-0 h-full w-full" />
+      {/* 1. SPATIAL HERO */}
+      <section className="spatial-hero relative overflow-hidden pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24 tech-grid-bg">
+        <div className="spatial-hero-glow spatial-hero-glow--main" aria-hidden="true" />
+        <div className="spatial-hero-glow spatial-hero-glow--side" aria-hidden="true" />
+        <div className="spatial-hero-orbit" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-            
-            {/* Left Content Column */}
-            <div className="space-y-6 text-center lg:col-span-7 lg:text-left">
-              
-              {/* Agency Tagline Pill */}
-              <div className="hero-enter hero-d1 inline-flex items-center gap-2 rounded-full border border-axon-blue/30 bg-axon-surface/80 px-4 py-1.5 backdrop-blur-md">
-                <span className="flex h-2 w-2 rounded-full bg-axon-blue animate-pulse" />
-                <span className="text-xs font-mono font-medium tracking-wide text-axon-accent">
-                  YOUR VISION. OUR CODE.
-                </span>
+          <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-5 xl:gap-8">
+            <div className="space-y-6 text-center lg:col-span-6 lg:text-left xl:col-span-6">
+              <div className="hero-enter hero-d1 hero-eyebrow mx-auto lg:mx-0">
+                <span className="hero-eyebrow-pulse" />
+                <span>INDEPENDENT DIGITAL STUDIO</span>
+                <span className="hero-eyebrow-divider">/</span>
+                <span>JAIPUR, INDIA</span>
               </div>
 
-              {/* Primary Required Headline */}
-              <h1 className="hero-enter hero-d2 text-3xl font-black tracking-tight text-axon-text sm:text-5xl lg:text-5xl xl:text-6xl uppercase leading-tight sm:leading-none">
-                WE BUILD DIGITAL <br className="hidden sm:inline" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-axon-text via-axon-blue to-axon-accent">
-                  EXPERIENCES
-                </span>{' '}
-                THAT MOVE <br className="hidden sm:inline" />
-                BUSINESSES FORWARD.
+              <h1 className="hero-enter hero-d2 hero-title mx-auto max-w-3xl lg:mx-0">
+                We build digital{' '}
+                <span className="hero-title-accent">experiences</span>{' '}
+                that move business forward.
               </h1>
 
-              {/* Typing service line */}
               <div className="hero-enter hero-d3 flex justify-center lg:justify-start">
-                <div className="inline-flex w-[17.5rem] sm:w-[21rem] items-center gap-2 rounded-lg border border-axon-border bg-axon-bg/80 px-3.5 py-2.5 font-mono text-sm sm:text-base shadow-glow-sm backdrop-blur-md">
-                  <span className="text-axon-blue" aria-hidden="true">&gt;</span>
-                  <span className="text-axon-muted">we build</span>
+                <div className="hero-service-line">
+                  <span className="hero-service-mark">✳</span>
+                  <span className="hero-service-prefix">MADE FOR</span>
                   <RotatingWords />
                 </div>
               </div>
 
-              {/* Supporting Text */}
-              <p className="hero-enter-soft max-w-2xl text-base sm:text-lg text-axon-muted leading-relaxed mx-auto lg:mx-0">
-                Axonix Tech designs and engineers modern responsive websites, professional presentations, and website chatbots for businesses, coaching centres, restaurants, students, and growing brands. Performance-focused, engineered for mobile screens, and built to turn attention into meaningful client enquiries.
+              <p className="hero-enter-soft hero-copy mx-auto max-w-xl lg:mx-0">
+                Thoughtful websites, polished presentations, and useful chatbots—crafted to give growing businesses a sharper online presence and turn attention into real enquiries.
               </p>
 
-              {/* Price hint */}
               <div className="hero-enter hero-d3 flex justify-center lg:justify-start">
-                <a
-                  href="#pricing"
-                  data-umami-event="hero-price-pill"
-                  className="group inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-400/[0.08] px-4 py-1.5 text-xs sm:text-sm text-axon-muted transition-colors hover:border-amber-400/60"
-                >
-                  <Tag className="h-3.5 w-3.5 text-amber-300" aria-hidden="true" />
-                  <span>
-                    Websites from <strong className="font-mono text-axon-text">₹4,999</strong>
-                    <span className="text-amber-300"> · extra discount on request</span>
-                  </span>
-                  <ArrowRight className="h-3.5 w-3.5 text-amber-300 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                <a href="#pricing" data-umami-event="hero-price-pill" className="hero-price-pill group">
+                  <Tag className="h-4 w-4 shrink-0" aria-hidden="true" />
+                  <span>Websites from <strong>₹4,999</strong></span>
+                  <span className="hero-price-note">— ask about early-client discounts</span>
+                  <ArrowRight className="h-3.5 w-3.5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </a>
               </div>
 
-              {/* CTA Group */}
-              <div className="hero-enter hero-d4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+              <div className="hero-enter hero-d4 flex flex-col items-center justify-center gap-3 pt-1 sm:flex-row lg:justify-start">
                 <Link
                   href="/contact"
                   data-ripple
                   data-umami-event="hero-start-project"
-                  className="btn-shine w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg bg-axon-blue px-7 py-3.5 text-base font-semibold text-axon-bg shadow-glow-sm transition-all duration-200 hover:bg-axon-accent hover:shadow-glow-md active:scale-98"
+                  className="hero-cta hero-cta--primary btn-shine w-full sm:w-auto"
                 >
-                  <span>Start a Project</span>
-                  <ArrowRight className="h-5 w-5" />
+                  <span>Start a project</span>
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
 
-                <Link
-                  href="/work"
-                  data-ripple
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-lg border border-axon-border bg-axon-surface/80 px-7 py-3.5 text-base font-medium text-axon-text transition-all duration-200 hover:border-axon-blue/50 hover:bg-axon-surface active:scale-98"
-                >
-                  <span>Explore Our Work</span>
+                <Link href="/work" data-ripple className="hero-cta hero-cta--secondary w-full sm:w-auto">
+                  <span>Explore our work</span>
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
 
-
-              {/* Agency Core Highlights */}
-              <div className="hero-enter hero-d5 pt-6 grid grid-cols-2 sm:grid-cols-3 gap-3 border-t border-axon-border/80 text-left">
-                <div className="flex items-center gap-2">
-                  <Smartphone className="h-4 w-4 text-axon-blue shrink-0" />
-                  <span className="text-xs text-axon-muted">Mobile-First (360px+)</span>
+              <div className="hero-enter hero-d5 hero-trust-row" aria-label="What you can expect">
+                <div className="hero-trust-item">
+                  <Smartphone className="h-4 w-4" aria-hidden="true" />
+                  <span>Mobile-first</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Zap className="h-4 w-4 text-axon-accent shrink-0" />
-                  <span className="text-xs text-axon-muted">Performance-Focused</span>
+                <span className="hero-trust-separator" aria-hidden="true" />
+                <div className="hero-trust-item">
+                  <Zap className="h-4 w-4" aria-hidden="true" />
+                  <span>Performance-minded</span>
                 </div>
-                <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
-                  <ShieldCheck className="h-4 w-4 text-emerald-400 shrink-0" />
-                  <span className="text-xs text-axon-muted">Zero Template Bloat</span>
+                <span className="hero-trust-separator" aria-hidden="true" />
+                <div className="hero-trust-item">
+                  <ShieldCheck className="h-4 w-4" aria-hidden="true" />
+                  <span>Full code ownership</span>
                 </div>
-              </div>
-
-            </div>
-
-            {/* Right Graphic Column: Bespoke AX Terminal Visual */}
-            <div className="hero-enter hero-d3 lg:col-span-5 flex justify-center">
-              <div className="w-full animate-float-slow">
-                <AxVisual />
               </div>
             </div>
 
+            <div className="hero-enter hero-d3 lg:col-span-6 xl:col-span-6">
+              <AxVisual />
+            </div>
           </div>
         </div>
       </section>
@@ -283,7 +251,7 @@ export default function HomePage() {
       <ServicesMarquee />
 
       {/* 2. SERVICES PREVIEW SECTION */}
-      <section className="py-20 bg-axon-surface/40 border-t border-axon-border">
+      <section className="capabilities-section py-20 bg-axon-surface/40 border-t border-axon-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div data-reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <SectionHeading
@@ -321,7 +289,7 @@ export default function HomePage() {
       </section>
 
       {/* 3. FEATURED CONCEPT PROJECTS SECTION */}
-      <section className="py-20 bg-axon-bg border-t border-axon-border">
+      <section className="portfolio-section py-20 bg-axon-bg border-t border-axon-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div data-reveal className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
             <SectionHeading
@@ -376,7 +344,7 @@ export default function HomePage() {
       <FAQSection limit={6} />
 
       {/* 7. FINAL CONTACT CTA SECTION */}
-      <section className="relative py-20 bg-axon-surface border-t border-axon-border overflow-hidden">
+      <section className="final-cta-section relative py-20 bg-axon-surface border-t border-axon-border overflow-hidden">
         {/* Subtle radial glow */}
         <div className="absolute inset-0 radial-glow pointer-events-none" />
 
