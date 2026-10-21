@@ -1,142 +1,214 @@
 <div align="center">
 
-# ⚡ AXONIX TECH
-### HIGH-PERFORMANCE WEB ARCHITECTURE & DIGITAL EXPERIENCES
+<img src="public/logo.png" width="128" alt="Axonix Tech — spatial digital studio" />
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.2.35-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-00B4FF?style=for-the-badge&logo=tailwind-css&logoColor=black)](https://tailwindcss.com/)
-[![Vercel Edge](https://img.shields.io/badge/Deployed_on-Vercel-black?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
-[![Mobile Optimized](https://img.shields.io/badge/Mobile_View-360px_Fluid-00E599?style=for-the-badge&logo=android&logoColor=white)](#)
+<p><strong>SPATIAL DESIGN · DIGITAL ENGINEERING · HUMAN-FIRST EXPERIENCES</strong></p>
 
-<br />
+# AXONIX TECH
 
-**“YOUR VISION. OUR CODE.”**  
-*Modern websites. Meaningful digital experiences.*
+### YOUR VISION. OUR CODE.
 
-[Explore Services](#-agency-capabilities) • [View Concept Work](#-concept-demonstrations) • [Direct Inquiries](#-connect-with-axonix-tech)
+**Premium websites, presentation design, and practical chatbots for growing brands.**
+
+[![Next.js](https://img.shields.io/badge/Next.js-14.2-070A12?style=for-the-badge&logo=nextdotjs&logoColor=52D8F0)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-18-070A12?style=for-the-badge&logo=react&logoColor=52D8F0)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-070A12?style=for-the-badge&logo=typescript&logoColor=52D8F0)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-070A12?style=for-the-badge&logo=tailwindcss&logoColor=52D8F0)](https://tailwindcss.com/)
+[![CSS spatial UI](https://img.shields.io/badge/CSS-SPATIAL_UI-070A12?style=for-the-badge&logo=css3&logoColor=B1F4F7)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+
+[Website](https://axonix-tech-gamma.vercel.app) · [Services](https://axonix-tech-gamma.vercel.app/services) · [Concept work](https://axonix-tech-gamma.vercel.app/work) · [Contact](https://axonix-tech-gamma.vercel.app/contact)
 
 </div>
 
 ---
 
-## 🛰️ Executive Agency Overview
+## 01 / Studio overview
 
-**Axonix Tech** is a forward-deployed digital engineering studio specializing in high-speed, conversion-engineered web platforms. We design and build modern digital assets for institutes, dining establishments, tech ventures, and growing small businesses that demand credibility, sub-second mobile loading, and uncompromising design precision.
+**Axonix Tech** is an independent digital studio based in Jaipur, India. We design and build mobile-first websites, landing pages, presentation decks, and website chatbots for businesses, institutes, restaurants, students, and growing brands.
 
-```
-       /\
-      /  \  __  __
-     / /\ \ \ \/ /
-    / ____ \ >  <      AXONIX TECH
-   /_/    \_/_/\_\     DIGITAL SYSTEMS ENGINE
-```
+The site pairs a restrained midnight-and-cyan palette with a **spatial, 4D-inspired visual language**: layered interface surfaces, orbiting forms, pointer-responsive depth, and time-based motion. The hero's dimensional artwork is built with CSS and the existing brand mark—there is no WebGL or 3D-engine dependency.
 
----
+> **Design intent:** high depth, not high noise. Motion supports the content; it does not replace clarity, responsiveness, or accessibility.
 
-## 🎨 Visual Identity & Cyber Design Tokens
+## 02 / Engineering profile
 
-| Token Identifier | Hex Code | Visual Application |
-| :--- | :--- | :--- |
-| **Obsidian Core (Primary)** | `#080B12` | Deep-space canvas backdrop |
-| **Cyber Surface (Secondary)** | `#0D1220` | Elevated glass cards & navigation |
-| **Electric Blue (Primary)** | `#00B4FF` | Interactive focus rings, telemetry nodes, primary CTAs |
-| **Cyan Flare (Accent)** | `#36C5FF` | 3D chiseled logo lighting & sub-headers |
-| **Cyber Border** | `#1A2436` | Precision hair-line separation grids |
-| **High-Contrast Text** | `#F5F8FF` | Primary headings & legible copy |
-| **Muted Telemetry** | `#A6B2C5` | Secondary descriptions & metadata |
+| Layer | Implementation |
+| --- | --- |
+| Application | Next.js App Router, React, TypeScript |
+| Styling | Tailwind CSS plus a custom CSS motion and depth system |
+| Visual depth | CSS perspective, layered transforms, ambient gradients, parallax offsets |
+| Interaction | Pointer tilt, spotlight borders, scroll reveals, tap ripples, animated service marquee |
+| Navigation | Responsive top navigation with an accessible mobile side drawer |
+| Icons | Lucide React |
+| Deployment target | Vercel or another Node.js-compatible Next.js host |
 
----
+### Spatial motion system
 
-## ⚡ Core Engineering Capabilities
+- **Hero core:** layered Axonix identity visual with animated orbital paths and floating interface cards.
+- **Pointer depth:** selected surfaces respond to cursor position with restrained tilt, spotlight, and per-layer parallax.
+- **Scroll and tap feedback:** shared reveal and ripple effects are applied through `components/MotionEffects.tsx`.
+- **Motion accessibility:** motion is reduced or disabled when the visitor requests reduced motion.
+- **Performance approach:** the dimensional hero is DOM/CSS-based; canvas animation is reserved for the `/links` neural background.
 
-1. **Website Design:** Bespoke visual identity systems, layout architecture, and high-contrast digital interfaces designed in Figma.
-2. **Responsive Web Development:** Clean, semantic Next.js App Router codebases tested across narrow 360px Android smartphones through 4K desktop screens.
-3. **High-Impact Landing Pages:** Single-focus landing experiences engineered for immediate customer acquisition (WhatsApp click-to-chat & direct phone inquiries).
-4. **Website Redesign:** Modernization of legacy, slow, or template-bloated websites into lightweight, modern dark-mode platforms.
-5. **UI/UX Journey Prototyping:** User journey mapping, interactive click-through prototypes, and structured information hierarchy.
-6. **Portfolio & Business Portals:** Complete multi-page digital presence for coaching institutes (courses/fees/batches) and restaurants (interactive menus/reservations).
+> “4D-inspired” describes the visual treatment—depth plus motion over time. This project is not a literal four-dimensional renderer or VR experience.
 
----
+## 03 / Interface palette
 
-## 🏗️ System Directory Architecture
+| Token | Value | Role |
+| --- | --- | --- |
+| Obsidian | `#070A12` | Main canvas |
+| Deep surface | `#0B1220` | Navigation and elevated sections |
+| Card surface | `#10192A` | Interactive panels |
+| Electric cyan | `#52D8F0` | Primary accent and focus states |
+| Ice accent | `#B1F4F7` | Highlights and luminous details |
+| Border | `#1B2940` | Low-contrast separators |
+| Primary text | `#F3F6FA` | Headings and essential information |
+| Secondary text | `#A8B4C4` | Supporting content |
 
-> **CRITICAL ARCHITECTURAL NOTE FOR VERCEL DEPLOYMENT:**  
-> Next.js App Router requires all application routes, layouts, and styles to reside strictly inside the `app/` directory.
+The Tailwind palette lives in `tailwind.config.ts`; shared interaction, depth, and responsive rules live in `app/globals.css`.
 
-```
+## 04 / Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Studio homepage, spatial hero, services, concepts, pricing, process, FAQs |
+| `/services` | Service descriptions, standards, pricing, and FAQs |
+| `/work` | Restaurant, coaching, and technology concept projects |
+| `/work/presentations` | Presentation design samples |
+| `/about` | Studio approach, principles, and technology foundation |
+| `/contact` | Project brief and direct contact options |
+| `/links` | Compact link hub for social bio traffic |
+| `/privacy` | Privacy policy |
+| `/demo/business` | Local business / clinic website demonstration |
+| `/demo/chatbot` | Interactive rule-based chatbot demonstration |
+| `/demo/coaching` | Coaching institute website demonstration |
+| `/demo/restaurant` | Restaurant website demonstration |
+
+Concept projects are demonstrations, not client case studies. Any example metrics shown inside a mockup are illustrative.
+
+## 05 / Project structure
+
+```text
 axonix-tech/
-├── .gitignore                    # Git tracking ignore rules
-├── README.md                     # Advanced system & deployment documentation
-├── next-env.d.ts                 # Next.js TypeScript declarations
-├── next.config.mjs               # Next.js engine configuration
-├── package.json                  # Scripts & production dependencies
-├── postcss.config.js             # PostCSS processing pipeline
-├── tailwind.config.ts            # Cyber-dark theme & color palette extensions
-├── tsconfig.json                 # TypeScript compiler configuration
-│
-├── public/                       # Static public assets (Favicon & 3D Logo)
-│   ├── logo.png                  # High-tech 3D chiseled metallic AX emblem
-│   └── icon.svg                  # Scalable vector brand icon
-│
-├── app/                          # Next.js App Router Directory (MANDATORY)
-│   ├── layout.tsx                # Master root layout, fonts & metadata
-│   ├── globals.css               # Tailwind directives & cyber scanline styling
-│   ├── page.tsx                  # Home Page (Hero, 3D Console, Capabilities)
-│   ├── icon.tsx                  # Dynamic SVG/PNG tab favicon generator
-│   ├── robots.ts                 # Search crawler instructions
-│   ├── sitemap.ts                # Dynamic XML sitemap generator
-│   │
-│   ├── services/
-│   │   └── page.tsx              # /services — 6 Detailed service breakdowns
+├── app/
+│   ├── about/page.tsx
+│   ├── contact/page.tsx
+│   ├── demo/
+│   │   ├── business/page.tsx
+│   │   ├── chatbot/page.tsx
+│   │   ├── coaching/page.tsx
+│   │   └── restaurant/page.tsx
+│   ├── links/page.tsx
+│   ├── privacy/page.tsx
+│   ├── services/page.tsx
 │   ├── work/
-│   │   └── page.tsx              # /work — Restaurant, Coaching & Tech concepts
-│   ├── about/
-│   │   └── page.tsx              # /about — Engineering standards & philosophy
-│   └── contact/
-│       └── page.tsx              # /contact — Direct inquiry brief generator
-│
-└── components/                   # Reusable UI Architecture
-    ├── BrandLogo.tsx             # 3D Metallic emblem & typography badge
-    ├── Navbar.tsx                # Responsive glassmorphic navigation header
-    ├── Footer.tsx                # Comprehensive agency footer with disclosures
-    ├── AxVisual.tsx              # Holographic radar HUD with 3D logo showcase
-    ├── SectionHeading.tsx        # Reusable cyber-badge section title
-    ├── ServiceCard.tsx           # Interactive capability card with tech stack
-    ├── ProjectCard.tsx           # Browser frame concept mockup card
-    ├── ProcessSection.tsx        # 4-stage execution protocol (01 to 04)
-    └── ContactForm.tsx           # Honest client brief generator & mailto trigger
+│   │   ├── page.tsx
+│   │   └── presentations/page.tsx
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── page.tsx
+│   ├── icon.tsx
+│   ├── opengraph-image.tsx
+│   ├── robots.ts
+│   └── sitemap.ts
+├── components/
+│   ├── AxVisual.tsx
+│   ├── BrandLogo.tsx
+│   ├── ContactForm.tsx
+│   ├── DeckViewer.tsx
+│   ├── FAQSection.tsx
+│   ├── Footer.tsx
+│   ├── MotionEffects.tsx
+│   ├── Navbar.tsx
+│   ├── PricingSection.tsx
+│   ├── ProjectCard.tsx
+│   ├── ServiceCard.tsx
+│   └── ...shared experience components
+├── lib/site.ts
+├── public/
+│   ├── icon.svg
+│   └── logo.png
+├── package.json
+├── tailwind.config.ts
+└── tsconfig.json
 ```
 
----
+## 06 / Run locally
 
-## 🚀 Rapid Deployment Protocol (Android / Zero PC Required)
+### Requirements
 
-You can launch this entire agency infrastructure directly from your mobile browser on Vercel:
+- Node.js 18.17 or later (Node.js 20 LTS recommended)
+- npm
 
-### 1. Structure Verification on GitHub
-Ensure your repository files match the `app/` directory structure above. All pages (`page.tsx`, `layout.tsx`, `services/`, etc.) must be placed inside the `app/` folder.
+### Install and start
 
-### 2. Connect to Vercel
-1. Log into [vercel.com](https://vercel.com) using your GitHub account (`axonixtech01-cpu`).
-2. Select **Add New...** → **Project**.
-3. Import `axonix-tech`.
-4. Keep the Framework Preset as **Next.js** and Root Directory as `./`.
-5. Tap **Deploy**.
+```bash
+git clone https://github.com/axonixtech01-cpu/axonix-tech.git
+cd axonix-tech
+npm ci
+npm run dev
+```
 
-Vercel will compile the static build in ~45 seconds and provide a production edge URL (e.g. `https://axonix-tech.vercel.app`) with automatic SSL.
+Open `http://localhost:3000` in your browser.
 
----
+### Production build
 
-## 📬 Connect with Axonix Tech
+```bash
+npm run build
+npm run start
+```
 
-- **Official Email:** [Axonix.tech01@gmail.com](mailto:Axonix.tech01@gmail.com)
-- **Official Instagram:** [@axo_nixtech](https://www.instagram.com/axo_nixtech/)
-- **Response Commitment:** Within 24 hours
-- **Direct WhatsApp:** Integrated on live client deployments
+`npm run build` performs the Next.js production build, TypeScript checks, and static page generation. The project was verified with this command.
 
----
+## 07 / Deploy
+
+1. Import the GitHub repository into Vercel.
+2. Select **Next.js** as the framework and `./` as the root directory.
+3. Leave the output directory on the Next.js default.
+4. Deploy. No environment variables are required for the core website.
+
+The configured canonical URL is set in `lib/site.ts` as `SITE_URL`. Update it if the production domain changes.
+
+### Optional privacy-friendly analytics
+
+Analytics scripts load only when configured. Add only the provider values you use in the hosting dashboard:
+
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Enables Umami page views and named interaction events |
+| `NEXT_PUBLIC_UMAMI_SCRIPT_URL` | Optional custom Umami script URL |
+| `NEXT_PUBLIC_CF_BEACON_TOKEN` | Enables Cloudflare Web Analytics |
+
+Without these values the analytics component renders no third-party analytics script.
+
+## 08 / Privacy and data flow
+
+- The project brief is assembled in the visitor's browser. The visitor chooses whether to copy it, open an email draft, or continue to Instagram.
+- There is no project-brief API or database in this repository.
+- The chatbot and client-business demo pages are illustrative browser experiences; they do not submit or persist demo input.
+- See [`/privacy`](https://axonix-tech-gamma.vercel.app/privacy) for the visitor-facing policy.
+
+## 09 / Maintenance notes
+
+- **Brand colors and Tailwind tokens:** `tailwind.config.ts`
+- **Global styles, responsive rules, and motion:** `app/globals.css`
+- **Site metadata and canonical domain:** `app/layout.tsx` and `lib/site.ts`
+- **Navigation and mobile drawer:** `components/Navbar.tsx`
+- **Homepage content and featured concepts:** `app/page.tsx`
+- **Public logo and icon assets:** `public/`
+
+Keep interactive motion subtle, test at narrow mobile widths, and preserve the reduced-motion styles when adding animations.
+
+## 10 / Contact
+
+- **Email:** [Axonix.tech01@gmail.com](mailto:Axonix.tech01@gmail.com)
+- **Instagram:** [@axo_nixtech](https://www.instagram.com/axo_nixtech/)
+- **Studio:** Jaipur, Rajasthan, India
 
 <div align="center">
-  <sub>© 2026 Axonix Tech. All rights reserved. “YOUR VISION. OUR CODE.”</sub>
+
+---
+
+<sub>© 2026 Axonix Tech · YOUR VISION. OUR CODE.</sub>
+
 </div>
