@@ -35,7 +35,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
     );
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-axon-border bg-axon-surface/90 shadow-lg transition-all duration-300 hover:border-axon-blue/50 hover:shadow-glow-sm">
+    <article data-spotlight data-tilt className="group relative flex flex-col overflow-hidden rounded-2xl border border-axon-border bg-axon-surface/90 shadow-[0_18px_50px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-axon-blue/50 hover:shadow-glow-sm">
       
       {/* Interactive Browser Frame Mockup */}
       <div className="border-b border-axon-border/80 bg-axon-bg/90 p-3 sm:p-4">

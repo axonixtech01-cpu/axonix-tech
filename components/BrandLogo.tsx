@@ -22,13 +22,13 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
     >
       {/* 3D Chiseled Metallic Logo Emblem */}
       <div className="relative flex items-center justify-center shrink-0">
-        <div className="absolute -inset-1 rounded-lg bg-axon-blue/25 blur-md opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
+        <div className="absolute -inset-1 rounded-lg bg-axon-blue/15 blur-xl opacity-55 transition-opacity duration-300 group-hover:opacity-85" />
         <img
           src="/logo.png"
           alt=""
           width={dim}
           height={dim}
-          className="relative h-auto w-auto rounded-lg object-contain drop-shadow-[0_0_12px_rgba(0,180,255,0.45)] transition-transform duration-300 group-hover:scale-105 border border-axon-blue/30"
+          className="relative h-auto w-auto rounded-lg object-contain drop-shadow-[0_0_16px_rgba(82,216,240,0.22)] transition-transform duration-300 group-hover:scale-105 border border-white/10"
           style={{ maxHeight: dim, maxWidth: dim }}
         />
       </div>

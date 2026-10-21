@@ -47,7 +47,7 @@ export const Navbar: React.FC = () => {
   }, [isOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-axon-border/80 bg-[#080B12] transition-colors duration-200">
+    <header className="sticky top-0 z-50 w-full border-b border-white/[0.06] bg-[#070A12]/80 backdrop-blur-2xl transition-colors duration-200">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Mark */}
         <BrandLogo size="md" />
@@ -60,10 +60,10 @@ export const Navbar: React.FC = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative px-3 lg:px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-md ${
+                className={`relative rounded-lg px-3 py-2 text-sm font-medium transition-colors duration-200 lg:px-4 ${
                   isActive
-                    ? 'text-axon-text font-semibold'
-                    : 'text-axon-muted hover:text-axon-text hover:bg-axon-surface/60'
+                    ? 'bg-white/[0.055] text-axon-text font-semibold shadow-[inset_0_1px_rgba(255,255,255,0.05)]'
+                    : 'text-axon-muted hover:text-axon-text hover:bg-white/[0.035]'
                 }`}
               >
                 {item.label}
@@ -111,7 +111,7 @@ export const Navbar: React.FC = () => {
       {/* Mobile Menu Backdrop & Drawer — 100% Solid Background (Zero Transparency) */}
       {isOpen && (
         <div
-          style={{ backgroundColor: '#080B12' }}
+          style={{ backgroundColor: '#070A12' }}
           className="fixed inset-x-0 top-16 bottom-0 z-[9999] md:hidden flex flex-col justify-between overflow-y-auto border-t border-axon-border bg-[#080B12] px-6 py-6"
         >
           {/* Navigation Links */}
