@@ -70,15 +70,15 @@ const CONCEPT_PROJECTS: ProjectData[] = [
 
 export default function WorkPage() {
   return (
-    <div className="flex flex-col py-12 sm:py-16 lg:py-20 tech-grid-bg">
+    <div className="spatial-page-shell flex flex-col py-12 sm:py-16 lg:py-20 tech-grid-bg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <div className="page-intro text-center max-w-3xl mx-auto space-y-4 mb-12">
           <div className="inline-flex items-center gap-2 rounded-full border border-axon-blue/30 bg-axon-blue/10 px-3.5 py-1 text-xs font-mono text-axon-accent">
             <span>PORTFOLIO DEMONSTRATIONS</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-axon-text">
+          <h1 className="page-title">
             Concept Projects &amp; Capabilities
           </h1>
           <p className="text-base sm:text-lg text-axon-muted leading-relaxed">
@@ -87,7 +87,7 @@ export default function WorkPage() {
         </div>
 
         {/* Honest Disclosure Banner */}
-        <div className="mb-14 rounded-xl border border-axon-blue/30 bg-axon-surface/80 p-4 sm:p-5 flex items-start gap-3 backdrop-blur-md">
+        <div data-spotlight data-tilt className="relative mb-14 rounded-xl border border-axon-blue/30 bg-axon-surface/80 p-4 sm:p-5 flex items-start gap-3 backdrop-blur-md">
           <AlertCircle className="h-5 w-5 text-axon-blue shrink-0 mt-0.5" />
           <div className="text-xs sm:text-sm text-axon-muted space-y-1">
             <strong className="text-axon-text font-semibold">Honest Representation Policy:</strong>{' '}
@@ -111,7 +111,7 @@ export default function WorkPage() {
         </div>
 
         {/* Breakdown of Why Concept Work Matters */}
-        <div className="mt-20 rounded-2xl border border-axon-border bg-axon-surface/60 p-8 sm:p-12">
+        <div data-spotlight data-tilt className="relative mt-20 rounded-2xl border border-axon-border bg-axon-surface/60 p-8 sm:p-12">
           <div className="max-w-3xl mx-auto text-center space-y-4">
             <div className="inline-flex items-center gap-2 font-mono text-xs text-axon-dim uppercase">
               <Layers className="h-4 w-4 text-axon-blue" />
