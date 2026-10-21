@@ -75,13 +75,13 @@ const slug = (s: string) =>
 
 export default function LinksPage() {
   return (
-    <div className="relative overflow-hidden tech-grid-bg">
+    <div className="spatial-page-shell spatial-links-page relative overflow-hidden tech-grid-bg">
       <div className="absolute inset-x-0 top-0 h-96 radial-glow pointer-events-none" aria-hidden="true" />
       <NeuralBackground className="absolute inset-0 h-full w-full" density={0.8} />
 
       <div className="relative mx-auto max-w-md px-4 py-10 sm:py-14">
         {/* Profile header */}
-        <header className="flex flex-col items-center text-center">
+        <header className="spatial-profile flex flex-col items-center text-center">
           <div className="hero-enter hero-d1">
             <BrandLogo size="lg" />
           </div>
@@ -132,17 +132,18 @@ export default function LinksPage() {
                     rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                     data-ripple
                     data-spotlight
+                    data-tilt
                     data-umami-event={`links-${slug(item.label)}`}
                     className={className}
                   >
                     {content}
                   </a>
                 ) : item.href.startsWith('#') ? (
-                  <a href={item.href} data-ripple data-spotlight data-umami-event={`links-${slug(item.label)}`} className={className}>
+                  <a href={item.href} data-ripple data-spotlight data-tilt data-umami-event={`links-${slug(item.label)}`} className={className}>
                     {content}
                   </a>
                 ) : (
-                  <Link href={item.href} data-ripple data-spotlight data-umami-event={`links-${slug(item.label)}`} className={className}>
+                  <Link href={item.href} data-ripple data-spotlight data-tilt data-umami-event={`links-${slug(item.label)}`} className={className}>
                     {content}
                   </Link>
                 )}
