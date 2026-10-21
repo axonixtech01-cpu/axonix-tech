@@ -1,4 +1,3 @@
-
 import React from 'react';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/site';
@@ -152,15 +151,15 @@ const ALL_SERVICES: ServiceItem[] = [
 export default function ServicesPage() {
   return (
     <>
-    <div className="flex flex-col py-12 sm:py-16 lg:py-20 tech-grid-bg">
+    <div className="spatial-page-shell flex flex-col py-12 sm:py-16 lg:py-20 tech-grid-bg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="page-intro text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 rounded-full border border-axon-blue/30 bg-axon-blue/10 px-3.5 py-1 text-xs font-mono text-axon-accent">
             <span>DESIGN, DEVELOPMENT &amp; DIGITAL SERVICES</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-axon-text">
+          <h1 className="page-title">
             Specialized Services Built for Purpose
           </h1>
           <p className="text-base sm:text-lg text-axon-muted leading-relaxed">
@@ -179,7 +178,7 @@ export default function ServicesPage() {
         <SamplesStrip className="mt-12" />
 
         {/* Realistic Technical Standards Banner */}
-        <div data-reveal className="mt-20 rounded-2xl border border-axon-border bg-axon-surface/80 p-8 sm:p-10 backdrop-blur-sm">
+        <div data-reveal data-spotlight data-tilt className="relative mt-20 rounded-2xl border border-axon-border bg-axon-surface/80 p-8 sm:p-10 backdrop-blur-sm">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7 space-y-4">
               <div className="inline-flex items-center gap-2 font-mono text-xs text-axon-blue">
@@ -212,7 +211,7 @@ export default function ServicesPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 flex flex-col items-center justify-center rounded-xl border border-axon-border bg-axon-bg p-6 text-center space-y-4">
+            <div data-spotlight data-tilt className="relative lg:col-span-5 flex flex-col items-center justify-center rounded-xl border border-axon-border bg-axon-bg p-6 text-center space-y-4">
               <span className="font-mono text-xs text-axon-dim uppercase">NEED A CUSTOM SCOPE?</span>
               <p className="text-sm text-axon-muted">
                 Have a unique requirement like a custom institute portal, a pitch deck, or a website chatbot? Let’s review your specifications.
