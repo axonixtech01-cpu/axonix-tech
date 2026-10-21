@@ -30,14 +30,14 @@ export default function PrivacyPage() {
   );
 
   return (
-    <div className="py-12 sm:py-16 lg:py-20 tech-grid-bg">
+    <div className="spatial-page-shell py-12 sm:py-16 lg:py-20 tech-grid-bg">
       <article className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <header className="space-y-4 border-b border-axon-border pb-8">
+        <header className="page-intro privacy-page-intro space-y-4 border-b border-axon-border pb-8">
           <div className="inline-flex items-center gap-2 rounded-full border border-axon-blue/30 bg-axon-blue/10 px-3.5 py-1 text-xs font-mono text-axon-accent">
             <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
             <span>YOUR PRIVACY</span>
           </div>
-          <h1 className="text-3xl sm:text-4xl font-black tracking-tight text-axon-text">Privacy Policy</h1>
+          <h1 className="page-title">Privacy Policy</h1>
           <p className="text-sm text-axon-dim font-mono">Last updated: {LAST_UPDATED}</p>
           <p className="text-sm sm:text-base leading-relaxed text-axon-muted">
             This policy explains what information Axonix Tech (&ldquo;we&rdquo;, &ldquo;us&rdquo;) handles when you
