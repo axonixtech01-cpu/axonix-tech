@@ -79,6 +79,10 @@ export function MotionEffects() {
       el.style.setProperty('--rx', '0deg');
       el.style.setProperty('--ry', '0deg');
       el.classList.remove('spot-on');
+      el.querySelectorAll<HTMLElement>('[data-depth]').forEach((layer) => {
+        layer.style.setProperty('--depth-x', '0px');
+        layer.style.setProperty('--depth-y', '0px');
+      });
     };
 
     const applyPointer = () => {
@@ -100,6 +104,17 @@ export function MotionEffects() {
       card.style.setProperty('--mx', `${x}px`);
       card.style.setProperty('--my', `${y}px`);
       card.classList.add('spot-on');
+
+      // Independent depth values create a restrained parallax response inside spatial visuals.
+      if (e.pointerType === 'mouse') {
+        const nx = x / Math.max(rect.width, 1) - 0.5;
+        const ny = y / Math.max(rect.height, 1) - 0.5;
+        card.querySelectorAll<HTMLElement>('[data-depth]').forEach((layer) => {
+          const depth = Math.max(0, Math.min(18, Number(layer.dataset.depth) || 8));
+          layer.style.setProperty('--depth-x', `${(nx * depth).toFixed(1)}px`);
+          layer.style.setProperty('--depth-y', `${(ny * depth).toFixed(1)}px`);
+        });
+      }
 
       if (e.pointerType === 'mouse' && card.hasAttribute('data-tilt')) {
         const rx = ((y / rect.height) - 0.5) * -5; // max ±2.5deg
