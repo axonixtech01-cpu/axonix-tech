@@ -119,6 +119,7 @@ export default function ChatbotDemoPage() {
                 data-reveal
                 data-reveal-delay={i + 1}
                 data-spotlight
+                data-tilt
                 className={`relative rounded-2xl border bg-axon-surface/70 p-6 sm:p-7 ${c.tone}`}
               >
                 <div className="flex items-center gap-3">
