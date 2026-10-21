@@ -25,15 +25,15 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ContactPage() {
   return (
-    <div className="flex flex-col py-12 sm:py-16 lg:py-20 tech-grid-bg">
+    <div className="spatial-page-shell flex flex-col py-12 sm:py-16 lg:py-20 tech-grid-bg">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <div className="page-intro text-center max-w-3xl mx-auto space-y-4 mb-16">
           <div className="inline-flex items-center gap-2 rounded-full border border-axon-blue/30 bg-axon-blue/10 px-3.5 py-1 text-xs font-mono text-axon-accent">
             <span>GET IN TOUCH</span>
           </div>
-          <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-axon-text">
+          <h1 className="page-title">
             Initiate Your Project
           </h1>
           <p className="text-base sm:text-lg text-axon-muted leading-relaxed">
@@ -48,13 +48,13 @@ export default function ContactPage() {
           <div className="lg:col-span-5 space-y-6">
             
             {/* Contact Information Cards */}
-            <div className="rounded-2xl border border-axon-border bg-axon-surface/80 p-6 sm:p-7 space-y-6 backdrop-blur-sm">
+            <div data-spotlight data-tilt className="relative rounded-2xl border border-axon-border bg-axon-surface/80 p-6 sm:p-7 space-y-6 backdrop-blur-sm">
               <h2 className="text-lg font-bold text-axon-text font-mono uppercase tracking-wider">
                 Direct Channels
               </h2>
 
               {/* Email Card */}
-              <div className="rounded-xl border border-axon-border/70 bg-axon-bg p-4 transition-colors hover:border-axon-blue/50">
+              <div data-spotlight data-tilt className="relative rounded-xl border border-axon-border/70 bg-axon-bg p-4 transition-colors hover:border-axon-blue/50">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-axon-blue/10 text-axon-blue">
                     <Mail className="h-5 w-5" />
@@ -107,7 +107,7 @@ export default function ContactPage() {
               </div>
 
               {/* Response Time Guarantee */}
-              <div className="rounded-xl border border-axon-border/70 bg-axon-bg p-4">
+              <div data-spotlight data-tilt className="relative rounded-xl border border-axon-border/70 bg-axon-bg p-4">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
                     <Clock className="h-5 w-5" />
@@ -125,7 +125,7 @@ export default function ContactPage() {
             </div>
 
             {/* What to Expect Card */}
-            <div className="rounded-2xl border border-axon-border bg-axon-surface/60 p-6 space-y-4 text-xs sm:text-sm text-axon-muted">
+            <div data-spotlight data-tilt className="relative rounded-2xl border border-axon-border bg-axon-surface/60 p-6 space-y-4 text-xs sm:text-sm text-axon-muted">
               <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-axon-text">
                 What happens after you reach out?
               </h3>
